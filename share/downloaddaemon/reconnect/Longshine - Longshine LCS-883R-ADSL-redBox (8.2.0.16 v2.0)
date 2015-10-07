@@ -1,0 +1,18 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /status-welcome-common.html/disconnect HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+EmWeb_ns:vim:2=/status.html&EmWeb_ns:vim:8._wanppp=ImService:PppoeUp&EmWeb_ns:vim:6._wanppp:enabled=false&EmWeb_ns:vim:16=true
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            GET / HTTP/1.1
+            Host: http://www.routercontrol.de
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

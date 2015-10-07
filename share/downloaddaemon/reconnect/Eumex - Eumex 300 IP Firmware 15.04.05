@@ -1,0 +1,29 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /cgi-bin/webcm HTTP/1.1
+            Host: %%%routerip%%%
+
+getpage=../html/hcti_startseite.htm&login:command/password=%%%pass%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /cgi-bin/webcm HTTP/1.1
+            Host: %%%routerip%%%
+            Cookie: %%%Set-Cookie%%%
+
+getpage=../html/hcti_startseite.htm&errorpage=../html/hcti_startseite.htm&connection0:settings/cmd_disconnect=1&var:state=0
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /cgi-bin/webcm HTTP/1.1
+            Host: %%%routerip%%%
+            Cookie: %%%Set-Cookie%%%
+
+getpage=../html/hcti_startseite.htm&errorpage=../html/hcti_startseite.htm&connection0:settings/cmd_connect=1&var:state=5
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

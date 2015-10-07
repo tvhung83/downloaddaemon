@@ -1,0 +1,1274 @@
+2013-11-20
+   [stefan]
+	- add support for reconnect (easybytez.com)
+	- add support for folders (easybytez.com)
+
+2013-11-11
+   [stefan]
+	- add new linkdecrypter (linkdecrypter.com)
+
+2013-10-02 
+   [stefan]
+	- add new plugin (free user) easybytez.com
+
+2013-03-08 
+   [stefan]
+	- add new plugin (free user) gamefront.com
+
+2013-01-24 
+   [stefan]
+	- fix for serienjunkies.org
+
+2013-01-04 
+   [stefan]
+	- add new plugin (free user) putlocker.com
+
+2012-12-28
+   [stefan]
+	- fixed uploaded.net plugin
+	- remove uploaded.to plugin
+
+2012-11-06
+   [stefan]
+	- fixed uploaded.to to new uploaded.net
+
+2012-02-23
+   [adrian]
+	- Included a simple regular-expression engine into DownloadDaemon to simplify string parsing (trex)
+
+2012-02-20
+   [adrian]
+	- some premium account fixes, especially rapidshare.
+
+2012-02-17
+   [stefan]
+	- added mediafire.com plugin
+	- remove share-online.biz free part
+
+2012-02-06
+   [stefan]
+	- netload free support fixed
+
+2012-01-24
+   [stefan]
+	- share-online.biz premium support added
+
+2011-10-23
+   [stefan]
+	- removed share.cx and gaiafile.com because the are offline
+
+2011-09-10
+   [stefan]
+	- add free member account to megaupload.com as requested
+	- bugfix for iload.to
+
+2011-09-06
+   [boudcallens]
+	- added ifile.it plugin
+
+2011-09-03
+   [stefan]
+	- bugfix iload.to
+	- bugfix plugin_getinfo for x7.to
+
+2011-08-30
+   [boudcallens]
+	- added multiupload plugin
+	- added hotfile list
+	- improved deep-unrar capabilities
+
+2011-08-24
+    [stefan]
+	- add get_file_status for share-online.biz plugin
+	- bugfix get_file_status for rapidshare.com 
+
+	2011-08-22
+    [stefan]
+	- add support for iload.to link decrypter (captchas can be solved by user only)
+
+2011-08-19
+    [boudcallens]
+	- added 7z extractor as requested
+
+2011-08-19
+    [susanne]
+	- rewrote ddclient-guis update management, should be a lot more stable now
+
+2011-08-17
+   [boudcallens]
+	- added support for hjsplit
+	- a few new plugins: safelinking.net, rapidshare folders, megaupload folders
+	- added implementation of deep unrar
+	- added buttons TOP and DOWN to ddclient-GUI
+
+2011-08-17
+   [stefan]
+	- add support for serienjunkies.org link decrypter (captchas can be solved by user only)
+
+2011-08-01
+   [stefan]
+	- fix youtube.com plugin
+   
+2011-06-22
+   [stefan]
+	- added free plugin gaiafile.com
+	- fix for rapidshare.com (changed site layout for free users)
+
+2011-05-06
+   [stefan]
+	- added new plugin state (PLUGIN_NO_PARALLEL)
+	- added free and free-Account plugin x7.to
+	- added free plugin duckload.com
+   
+2011-04-02
+   [stefan]
+	- added error handling for plugin share.cx if file was removed
+	- Added free plugin for share-online.biz
+
+2011-03-31
+   [stefan]
+	- Added premium plugin for filesonic.com
+   
+2011-03-24
+   [adrian]
+	- Added plugin for shragle.com (thanks, Boy1979)
+	- Some improvements when starting downloads (sometimes DD forgets to start the next DL)
+
+2011-03-21
+   [adrian]
+	- Added plugins for files.mail.ru, zshare.net, load.to. Thanks a lot to Boy1979!	
+
+2011-02-01
+   [adrian]
+	- Improved memory usage while prechecking links
+	- Updated depositfiles.com plugin
+
+2011-01-07
+   [susanne]
+	- added advanced configuration in ddclient-gui which can modify all changeable variables (similar to firefox's about:config)
+
+2011-01-04
+   [susanne]
+	- ddclient-gui can now remotely solve captchas
+
+2011-01-02
+   [adrian]
+	- ddclient-php can now remotely solve captchas
+	- fixed linksave.in plugin if dlc is not available
+	- configurable reload-time in ddclient-php
+
+2010-12-31
+   [adrian]
+	- First implementation for manually solving captchas remotely in DD
+
+2010-12-29
+   [susanne]
+	- Changed behaviour of config dialog of ddclient-gui to use VAR LIST and only save changed items
+
+2010-12-25
+   [adrian]
+	- Added experimental relink.us decrypter
+
+2010-12-24
+   [adrian]
+	- New command: VAR LIST to get a list of configuration variables
+	- advanced configuration in ddclient-php which can modify all changeable variables (similar to firefox's about:config)
+	- experimental linksave.in plugin, probably not 100% working yet
+
+2010-12-23
+   [adrian]
+	- Implemented PKG ACTIVATE/DEACTIVATE commands and buttons in ddclient-php
+	- most commands taking Download/Package IDs can now handle comma-seperated ID-lists (not all)
+
+2010-12-22
+   [adrian]
+	- Improvements in external/script-based reconnect
+	- crashfix in environment-variable handling
+
+2010-12-16
+   [adrian]
+	- ddclient-php improvements: removed date-added column, added progress bar, shortened titles and links if they are too long, update the list with ajax instead of a page reload
+
+2010-12-09
+   [adrian]
+	- Added premium support for fileserve.com
+
+2010-12-04
+   [adrian]
+	- proper handling of escaped URLs and download-titles. you should now be able to add urls with a |-symbol inside (needed for the new rapidshare links)
+	- removed ddclient-wx from the source tree. It is no longer maintained and was replaced by ddclient-gui
+	- 100%-cpu fix in rsdf-container decryption code
+
+2010-12-03
+   [adrian]
+	- finally added support for dlc-containers by contacting dcrypt.it
+	- added a dlc-upload form to ddclient-php, extended ddclient-gui's container upload to also upload dlcs
+
+2010-11-07
+   [adrian]
+	- added possibility to delete multiple downloads at once my supplying a ,-seperated list
+	- properly handle download speed limits: It's now a global limit that DD may use (still needs some more testing)
+
+2010-10-19
+   [adrian]
+	- correctly clean up curl handles to fix proxy-alternation support
+	- implemented hotfile.com premium download (free download will not work)
+
+2010-10-04
+   [adrian]
+	- added project-support and flattr-button to ddclient-gui's toolbar
+	- fixed rapidshare.com free download support for their new page-layout
+	- removed uploaded.to free download support because they switched to recaptcha
+
+2010-09-22
+   [adrian]
+	- fixed netfolder.in plugin, fixed bug that after calling a replace-plugin (netfolder/youtube playlist), downloading did not start immediately
+	- improvement of status-presetter: it should now always get called in the right moment
+
+2010-08-17
+   [susanne]
+	- added support for client-subscriptions at ddclient-gui: there will only be list updates when there is actually something changing in the list
+
+2010-07-31
+   [susanne]
+   	- Added insecure mode, in which all variables of the config file can be changed remotely
+   	- Added possibility to specify a post download script, which will be executed after a download has been finished
+
+2010-07-15
+   [adrian]
+	- Added support for client-subscriptions (the client can subscribe to the download-list or the DownloadDaemon configuration and automatically receive updates)
+
+2010-07-13
+   [adrian]
+	- Implementation of ddproxy.php. This lets you use a proxy for downloading/traffic limit bypassing without even having access
+	  to a proxy server. A simple PHP/cURL enabled webserver is enough (see https://downloaddaemon.svn.sourceforge.net/svnroot/downloaddaemon/trunk/tools/ddproxy.php)
+
+2010-07-10
+   [adrian]
+	- removed hotfile.com plugin because they moved to the (currently) unsolveable recaptcha service
+
+2010-07-05
+   [susanne]
+	- added possibility to autofill the title with a part of the URL when adding downloads at ddclient-gui
+
+2010-06-29
+   [adrian]
+	- fixed deadlock and crash when downloading via ftp
+	- do not stat() a downloaded file on FILE GETPATH because it can be really slow if called for a lot of downloads in a loop (40+)
+   [susanne]
+	- made ddclient-gui able to separate downloads into packages based on the possible filename when adding them (feature request #3022694)
+
+2010-06-28
+   [susanne]
+	- added possibility to change the number of captcha retries and some package extraction options at config dialog of ddclient-gui
+
+2010-06-21
+   [adrian]
+	- new log_procedure value: file:<path to log file> for logging to a file without using syslog
+   [susanne]
+	- added possibility to enter a file path as logging procedure at ddclient-gui
+
+2010-06-17
+   [adrian]
+	- The rapidshare plugin now automatically switches from premium to free download if the download limit is exceeded (bug #3009052)
+	- Added new commandline-options for more flexibility:
+		--confdir      Use the configuration files in the specified directory
+		-u             Start DownloadDaemon as the specified user
+		-g             Start DownloadDaemon with the permissions of the specified group
+		-p             Specify the path of DownloadDaemons pid-file
+
+2010-06-15
+   [adrian]
+	- DownloadDaemon will now load all plugins at startup instead of loading them when needed. this increases performance of
+	  plugin-execution greatly
+	- fixed youtube.com playlist download (occured because of their site-layout change)
+
+2010-06-14
+   [adrian]
+	- new reconnect-settings: new_ip_wait, reconnect_tries, ip_server to set a few more reconnect options
+	- fixed bug of hangig downloads after reconnect
+
+2010-06-12
+   [adrian]
+	- restructuring of the download-setup-process for correct filename detection and more flexibility
+	- when downloading to a subdirectory and deleting the downloaded file, the subdirectory will now also be removed if there
+	  is nothing else in it
+
+2010-05-29
+   [adrian]
+	- added support for actiontec PK5000 router
+
+2010-05-26
+   [adrian]
+   	- small idle-time optimization (less CPU required)
+   	- maybe fixed the rapidshare plugin hangs (again)
+
+2010-05-23
+   [adrian]
+	- introduced new log-level "INFO"
+	- improved performance of DD when just watching the list (DL LIST), everything will be a bit faster.
+	- implemented caching of config-variables to reduce I/O
+	- made the FILE GETPATH call in ddclient-php's download list optional to reduce a LOT of I/O
+
+2010-05-17
+   [adrian]
+	- if router-variables are changed, DD now checks if a reconnect is needed and executes it
+	- hopefully fixed the reconnect-polcies besides "pussy" (continue, etc)
+	- added a developer-testpluging, whcih can be influenced with the premium user (not built with cmake, only from IDE)
+
+2010-05-14
+   [adrian]
+	- DownloadDaemon now dumps a backtrace to the logger if it crashes by default if execinfo.h/backtrace() is available
+
+2010-05-10
+   [susanne]
+	- added tooltip for system tray icon of ddclient-gui
+
+2010-05-08
+   [adrian]
+	- added reconnect script for Netgear DG834G
+
+2010-05-01
+   [adrian]
+	- fixed bug #2995009. You can now store multiple archive-packages in one DD-package and DD will (probably) extract them all
+
+2010-04-25
+   [adrian]
+	- added experimental plugin for hotfile.com free-download
+
+2010-04-20
+   [adrian]
+	- removed the need of replacing the config file when updating DD. instead, there is a
+          default-config as a fallback if there are missing variables in the conf-file
+
+2010-04-18
+   [adrian]
+	- experimental support for megaupload.com premium download. has to be tested.
+
+2010-04-14
+   [adrian]
+	- added reconnect-script for Comtrend 536+
+	- fixed extraction when using rarlib-unrar in combination with a password-list
+
+----- 2010-04-19 - VERSION 1.0rc1 RELEASED
+
+2010-04-11
+   [adrian]
+	- fixed youtube.com plugin (video download)
+
+2010-04-05
+   [susanne]
+	- ddclient-gui now starts as tray icon and only shows gui if user clicks on this icon (right click shows a menu)
+
+2010-04-04
+   [susanne]
+	- added display of download information to statusbar (feature request ID: 2979928)
+
+2010-04-03
+   [adrian]
+	- added possibility to set package title/password and download title/url in ddclient-php
+	- some general ddclient-php improvements
+	- improvements in DL SET (DL_URL) command which reported incorrect SUCCESS status
+	- fixed youtube.com playlist download
+
+   [susanne]
+	- fixed wrong display of very big download sizes (>2 GB)
+	- ddclient-gui now shows if a package password is set via key icon in title column (feature request ID: 2980573)
+
+2010-04-01
+   [susanne]
+	- added donation button to about dialog at ddclient-gui
+
+2010-03-31
+   [adrian]
+	- fixed bug #2979924, which reports that after stopping and starting a running download, the download size will not be correct
+
+2010-03-30
+   [adrian]
+	- mostly implemented feature request #2977846 to get the file-size and status before actually running the download.
+	  you can also disable this functionality in the config-file. It already works for all plugins besides the youtube-plugin
+	- ddclient-php now correctly displays prechecked size of pending downloads
+	- some race-condition fixes if a download is deleted while a POST_PROCESS_DOWNLOAD plugin is active
+	- added plugin for depositfiles.com free download!
+   [susanne]
+	- ddclient-gui now correctly displays prechecked size of pending downloads
+	- added possibility to configure precheck_links with ddclient-gui
+	- added function to insert urls via ctrl+v to ddclient-gui
+
+2010-03-29
+   [adrian]
+	- Added plugin for filefactory.com. Its not yet fully functional, but can download already
+	- added compile flag -DBACKTRACE_ON_CRASH, which will make downloaddaemon print a backtrace if it gets a sigsegv
+
+2010-03-28
+   [adrian]
+	- fixed bug in reconnect parser, that posted post-data in the header, if it would also be valid
+	  (e.g. post-data is "login:xxxxx", it would be interpreted as a header)
+
+2010-03-27
+   [adrian]
+	- Added plugin for netfolder.in
+
+2010-03-26
+   [adrian]
+	- hopefully fixed the problem that sometimes, when downloading many files from rapidshare, the process suddenly stops when starting the next download
+
+2010-03-24
+   [adrian]
+	- some fixes and improvements in filename-validtaion for downloaded files
+
+2010-03-23
+   [adrian]
+	- improved unpacking functionality and made it more deadlock-secure. still some more testing required
+	- implemented support for extracting zip-archives using the "unzip" program
+	- added spanish language file for ddclient-php (https://sourceforge.net/tracker/?func=detail&aid=2975094&group_id=278029&atid=1180473)
+	- added better checks when writing to the dlist file. You will get a logged error now
+   [susanne]
+	- added spanish translation file for ddclient-gui (thanks to anonymous translator)
+	- added client configuration to configuration dialog at ddclient-gui (language and update interval)
+
+2010-03-22
+   [adrian]
+	- correctly reload plugin-cache if premium credetials have changed
+	- correctly get the premium-credetials, even if its a subdomain URL
+
+2010-03-21
+   [adrian]
+	- fixed compilation on older gcc 4.0 compilers that diddn't allow anonymous enums as template arguments
+	- fixed small bug in download-serialization
+	- improvements for downloaded files with a size of > 2GB by using stat64 instead of stat
+
+2010-03-20
+   [adrian]
+	- fixed rsdf support (sometimes the last url in the file was missing)
+	- fixed downloading if a plugin is needed and the URL contained "www." somewhere in the filename
+
+----- 2010-03-19 - VERSION 0.9 RELEASED
+
+2010-03-19
+   [adrian]
+	- DownloadDaemon now correctly gets the permission of supplementary groups of the downloadd user
+	  which makes it possible to download to folders which are only writeable by a supplementary group of the downloadd user, but NOT by the user itsself
+
+2010-03-16
+   [adrian]
+	- fixed get_next_downloadable not searching for other running downloads over all containers
+	- made it possible to use one plugin for all subdomains (makes it possible to download http://rs***.rapidshare.com/... urls)
+	- added --no-ask-pass option to ddconsole that makes it never ask for a password (useful for scripts, so ddconsole doesn't block)
+	- MANY speed and CPU-usage improvements all over the place, thanks to plugin-info caching and dropping the need of polling
+	  get_next_downloadable. lets hope it works.
+   [susanne]
+	- added a progressbar to ddclient-gui, showing how many finished downlaods a package has (if it's a package) or how many percent of the file has been downloaded (if it's a download)
+
+2010-03-14
+   [susanne]
+	- reimplemented list reloading of ddclient-gui
+	- added possibility to change proxylist to ddclient-gui
+	- added function to add download containers via ddclient-gui (only rsdf supportet right now)
+
+2010-03-13
+   [adrian]
+	- correctly define DDCLIENT_GUI_VERSION to get nice version numbers in the about dialog
+   [susanne]
+	- made ddclient-gui able to save a list of connections (user has to delete file to clear them)
+
+2010-03-10
+   [susanne]
+        - made configure dialog work at ddcient-gui
+        - added possibiliy to set package password to ddcient-gui
+        - made downloadc able to set/get download and package variables and insert download containers
+        - added functionality to set package password, package/download title and download url via context menu at ddclient-gui
+
+2010-03-09
+   [adrian]
+	- made auto-refresh in ddclient-php configurable (idea from here: https://sourceforge.net/projects/downloaddaemon/forums/forum/1007820/topic/3585763)
+	- auto-refresh only refreshs if there are downloads with the status DOWNLOAD_RUNNING or DOWNLOAD_WAITING
+   [susanne]
+        - added configure dialog (only gui, doesn't work yet) to ddclient-gui
+
+2010-03-08
+   [adrian]
+	- init script now checks for root permissions
+	- correctly link libdl to DownloadDaemon on older g++ versions
+	- better handling of -DDD_CONF_DIR when compiling DownloadDaemon
+   [susanne]
+        - added function to copy urls into clipboard to ddclient-gui
+        - added about dialog to ddclient-gui
+
+2010-03-07
+   [adrian]
+	- added experimental support for netload.in premium accounts (UNTESTED! please test it if you have an account!)
+	- DownloadDaemon now checks the Content-Disposition header to find out the correct filename for downloaded files.
+   [susanne]
+        - selecting a package acts now like selecting all downloads of a package for every function of ddclient-gui
+
+2010-03-06
+   [adrian]
+	- complete restructuring of the download-process, download class now threadsafe, so we can access it from all areas.
+	- added experimental support for RSDF containers
+   [susanne]
+        - made ddclient-gui able to delete files, downloads and packages
+        - added possibility to de(activate) downloads and increase/decrease downloads and packages to ddclient-gui
+
+2010-03-05
+   [susanne]
+        - added functionality to add dialog at ddclient-gui
+
+2010-03-04
+   [susanne]
+        - made ddclient-gui autoconnect to last connection, if possible
+        - ddclient-gui now automatically updates download list every two seconds
+        - added possibility to (de)activate downloading to ddclient-gui
+        - added add diaog to ddclient-gui (no functionlity yet)
+
+2010-03-03
+   [susanne]
+        - ddclient-gui now reloads download list (not automatically, but when pushing a button, etc)
+
+2010-03-02
+   [adrian]
+	- finished implementation of the untar/unrar functionality
+	- extended mgmt-api, made setting/getting of single download and package properties possible
+	- DownloadDaemon now downloads into a subfolder called like the package title, if there is one
+   [susanne]
+	- ddclient-gui now shows download list
+
+2010-03-01
+   [adrian]
+	- added program icon to ddclient-gui
+   [susanne]
+	- added connect dialog (fully working) to ddclient-gui
+	- made ddclient-gui language settings working
+
+2010-02-28
+   [susanne]
+	- added  menu, toolbar, contextmenu and download table to ddclient-gui (all functions are stubs right now)
+	- added language support to ddclient-gui
+	- and select all function to ddclient-gui
+
+2010-02-27
+   [susanne]
+	- started working on ddclient-gui (rewrite of ddclient-wx in qt)
+
+2010-02-25
+   [adrian]
+	- made ddclient-php package-compatible
+	- fixed problem in ddclient-php that makes logging in impossible if the server time is a few years in the past
+	- DownloadDaemon now checks if syslog.h and stdint.h exist, and compiles without those headers if they don't
+   [susanne]
+	- ddclient-wx is now fully working with the new download list structure
+
+2010-02-24
+   [adrian]
+	- Added basic functionality to extract rar, tar.gz and tar.bz2 packages to DownloadDaemon. Set a password list
+	  in downloaddaemon.conf. all passwords in that list will be tried until extraction succeeds.
+	- DownloadDaemon now deletes a downloaded file if its size is 0 bytes
+	- some improvements to alternating proxy support
+	- DownloadDaemon can now also handle "false", "no", "true", "yes", ... in config files, instead of just 0 and 1
+   [susanne]
+	- made everything of ddclient-wx except config-dialog (which is disabled right now) work with the new packages
+
+2010-02-22
+   [adrian]
+	- DownloadDaemon now supports alternating proxies! set a list of proxys to bypass IP-based download-limits!
+   [susanne]
+	- downloadc is now fully implemented
+
+2010-02-21
+   [adrian]
+	- DownloadDaemon now caches data when downloading fora bout half a second before writing it to file
+
+2010-02-19
+   [adrian]
+	- the download-list is now not a simple list any more, but is seperated into packages.
+	  THIS BREAKS CLIENT COMPATIBILITY! THE CLIENTS HAVE TO BE UPDATED (except for ddconsole)
+	- updated ddconsole help
+	- updated ddclient-php to be partly ready for the new package-based download list
+	- DownloadDaemon now uses unique download-IDs over packages
+   [susanne]
+	- added lib (downloadc) to simplify communication for clients with daemon (incl new packages support)
+	- downloadc can connect, return an easy to read list and add downloads/packages so far
+
+2010-02-18
+   [adrian]
+	- fixed downloading of https:// urls
+	- download_container now keeps download* instead of download and manages the memory
+
+2010-02-17
+   [adrian]
+	- fixed error-timeouts (again...)
+	- added experimental support for uploaded.to premium. It's untested, so please test it!
+	- fixed translation bugs in ddclient-php
+   [susanne]
+	- cleaned includes out of header files where not needed at ddclient-wx
+
+2010-02-16
+   [adrian]
+	- DownloadDaemon now works with c++0x's std::thread which can already replace boost::thread. compile with -DUSE_STD_THREAD=1
+	  to get rid of boost::thread. Only tested with g++ 4.4.1. You need a very recent compiler.
+   [susanne]
+	- added search functionality to router model selection at ddclient-wx
+
+2010-02-15
+   [adrian]
+	- Added experimental support for megaupload.com
+	- improved captcha api
+   [susanne]
+	- let translation function accept format strings at ddclient-wx
+
+2010-02-12
+   [susanne]
+	- reduced mutex locks at ddclient-wx
+
+2010-02-11
+   [adrian]
+	- fixed ddclient-php not running correctly if it was installed to the web-server root
+	- updated jdownloader router extractor
+	- mostly translatable configuration in ddclient-php
+	- added german language file for ddclient-php
+   [susanne]
+	- created class to translate strings by using language files
+	- implemented translation at ddclient-wx (currently only with German language file, others will follow)
+	- bugfix: removed race condition where ddclient-wx killed itself when dd was killed
+
+----- 2010-01-10 - VERSION 0.8 RELEASED
+
+2010-02-09
+   [adrian]
+	- brought rapidshare.com free download plugin up to date (new page layout)
+	- fixed small memory leak in uploaded.to and rapidshare.com plugin
+	- again improved captcha-decoding pocedure (mainly for windows)
+	- fixed many bugs and many many improvements here and there in DownloadDaemon
+	- fixed ddclient-php screwing up the router and hoster list
+	- use asynchroneous count-down sleep to make it more accurate
+   [susanne]
+	- bugfix for time left column at ddclient-wx
+
+
+2010-02-08
+   [adrian]
+	- automatic captcha decoding and netload.in plugin now also work on windows
+	- fixed some race conditions
+	- removed setting for plugin_dir in favour of security
+	- reject a download folder beginning with /etc
+	- fixed some wait-on-error timers
+	- fixed crash when moving running downloads up or down
+
+2010-02-07
+   [adrian]
+	- netload.in plugin is now ready to use for free download
+	- extended plugin api to allow post-processing of downloaded files
+
+2010-02-05
+   [adrian]
+	- added support for captcha-reading for hosters using gocr (including a wrapper to make it safe and comfortable)
+	- added netload plugin (does not yet work.. needs some checking)
+	- made downloaddaemon configuration movable. Specifie -DDD_CONF_DIR=<desired path> to let DownloadDaemon
+	  get its configuration files from there instead of /etc/downloaddaemon
+   [susanne]
+	- fixed some download time left calculation errors at ddclient-wx
+
+2010-02-04
+   [adrian]
+	- updated installation instructions
+	- made some config variables not remote-changeable for more security
+
+2010-02-03
+   [adrian]
+	- experimental support for in-memory container (faster, no HD-usage, but lost on restart)
+	- plugins can now call every function DD can call without any problem.. hopefully
+
+2010-02-02
+   [adrian]
+	- extended host-plugin api. You can now replace the current download by a list of
+	  new downloads. this makes decrypter- or playlist-download-plugins possible.
+	- better handling of CURLE_COULDNT_RESOLVE_HOST
+	- extended plugin api
+	- the new youtube plugin can now also download playlists (using the new decrypter-api)
+   [susanne]
+	- replaced added column with time left column at ddclient-wx
+	- replaced ddclient-wx screenshots due to gui change
+
+2010-01-31
+   [adrian]
+	- DD should now support all router models JD supports (391 models by default). You can create your own script by recording it with JD
+	- sort router-list serverside (case insensitive)
+	- added plugin to download youtube videos
+
+2010-01-30
+   [adrian]
+	- DD now uses JDownloader reconnect scripts for reconnecting (2 example scripts added, more to follow)
+   [susane]
+	- added possibility to delete file without deleting download entry at right click menu of ddclient-wx
+
+2010-01-29
+   [adrian]
+	- made jdownloader-reconnect script parser object-oriented and included it in DD (but it's not in use for now)
+
+2010-01-26
+   [adrian]
+	- permissions of config-files will now be set to 600 when installing
+
+2010-01-14
+   [adrian]
+	- added possibillity to recursively download ftp-folders (#2931619)
+	- fixed download resumption: if resumption is impossible, start from beginning
+
+2010-01-13
+   [adrian]
+	- fixed group-setting for downloaded files (was root, is now downloadd)
+	- fixed permissions for created directories
+
+----- 2010-01-13 - VERSION 0.7 RELEASED
+
+2010-01-13
+   [adrian]
+	- last changes needed for versioning
+
+2010-01-12
+   [adrian]
+	- improved env var resolution
+	- improved documentation if DD doesn't run because of wrong permissions
+
+2010-01-10
+   [adrian]
+	- fixed download resumption displaying wrong values
+   [susanne]
+	- added screenshots of ddclient-php to website
+	- added possibility to copy urls to clipboard at ddclient-wx
+	- added context menu to ddclient-wx
+	- ddclient-wx now shows the server its connected to
+
+2010-01-09
+   [adrian]
+	- Uploaded ddclient-php rewrite by bungh0le! it's not yet finished, but
+	  it shows what to expect
+	- changed date-format for downloads to yyyy-mm-dd hh:mm:ss
+
+2010-01-08
+   [susanne]
+	- added possibility to save login data and auto connect at program startup to ddclient-wx
+	- changed sceenshots at website
+
+2010-01-07
+   [adrian]
+	- fixed plugin-injection exploit
+	- removed config setting for permissions and owners of new files
+	- added config setting for the daemons umask (replaces above)
+	- added init-script to default installation
+	- updated versioning script to automatically add the downloadd user when installing the package
+	- improved daemonization and disallowed running DD as root. if DD runs as root, you will automatically
+	  receive the uid of the downloadd user and the gid of the downloadd group if possible
+	- when running DD as root and no downloadd user exists, you will get an error telling you what to do
+	- moved from custom logging function to syslog. instead of a log_file, you can now choose
+	  a log procedure (stdout, stderr, syslog)
+   [susanne]
+	- added possibility to change logging procedure at ddclient-wx
+	- improved layout of downloadpanel (configure dialog) at ddclient-wx
+
+
+2010-01-03
+   [susanne]
+	- added option (menu item and toolbar icon) to delete all finished downloads at ddclient-wx
+
+2010-01-02
+   [adrian]
+	- fixed "server overloaded" error for rapidshare.com
+	- made plugins a lot more crash-safe, even if hosters change their page-layout
+
+2009-12-30
+   [adrian]
+	- default config file lines are now <= 80 characters long
+	- fixed init-script
+
+----- 2009-12-25 - VERSION 0.6 RELEASED
+
+2009-12-24
+   [adrian]
+	- added option to set the file owner, group and permission for downloaded files (#2920686)
+
+2009-12-23
+   [adrian]
+	- ddclient-php now shows a warning on the main page if DD is inactive and there are pending downloads (#2918650)
+	- added favicon to ddclient-php and webpage (#2919386) (thanks to ingo2)
+	- made cfgfile parser more safe (better checking when writing. reduces flushed config files
+	- made some thread-safety improvements in DD (easier to read code and more security)
+
+2009-12-21
+   [adrian]
+	- added possibility to limit download speed (only for not running downloads because of libcurl limits)
+	- added download speed regulation to ddclient-php
+	- finally fixed usage on cygwin! Now you can use DownloadDaemon under Windows with cygwin!
+	- added displaying of the importance of a log-entry to the log-output
+   [susanne]
+	- added download speed regulation to ddclient-wx
+
+2009-12-17
+   [adrian]
+	- added possibility to open only on a specific device using SO_BINDTODEVICE. Only works if DD is executed as root.
+	  I hope I can fix that.
+	- fixed deadlock in cfgfile
+	- rewrite of device specification to use a setable address in bind() and don't use SO_BINDTODEVICE (because of root-problem)
+	- DownloadDaemon should now compile under Windows/Cygwin (beta required, stable does not work)
+
+----- 2009-12-15 - VERSION 0.5 RELEASED
+
+2009-12-15
+   [adrian]
+	- split up ddclient-wx for windows and unix to make use of resource files on windows
+
+2009-12-14
+   [adrian]
+	- fixed CMakeLists and versioning script for new files
+
+2009-12-11
+   [adrian]
+	- updated documentation
+	- added encryption setting to config file
+	- automatically reload config files on error
+	- increased socket recv timeout to 60 seconds
+	- added md5 algorithm to repository for encrypted authentication
+	- added encrypted authentication support in daemon and ddconsole. more to follow
+	- added encrypted authentication support in ddclient-php
+	- some cleanups in ddclient-php
+   [susanne]
+	- added encrypted authentication support to ddclient-wx
+
+2009-11-23
+   [adrian]
+	- updated installing notes (which now include a tutorial on how to execute DownloadDaemon without root privileges)
+	- fixed bug then when multiple plugin-based downloads start at the same time, not all files are written correctly
+	- added AES.h and AES.cpp (rijndael) from www.lomont.org/Software/Misc/AES/AES.php to repository
+	  which will be used for encrypted authentication in the future (and for rsdf containers in the future)
+
+2009-11-17
+   [adrian]
+	- correctly handle rapidshare's "This file is suspected to contain illegal content and has been blocked." message
+
+2009-11-12
+   [adrian]
+	- download size and downloaded bytes are now uint64_t instead of long to even work on
+	  weird compilers if the downloaded files are huge (DVD-sized)
+
+2009-11-09
+   [adrian]
+	- made ddconsole correctly handle EOF signals (reuslted in infinite loob before)
+
+2009-11-01
+   [adrian]
+	- fixed bugs when moving a running download up/down
+
+2009-10-29
+   [adrian]
+	- fixed race condition in download curlback
+	- using std::list instead of std::vector for the download list because it does less copy-crap
+
+2009-10-27
+   [susanne]
+	- picture fixes at ddclient-wx
+
+2009-10-24
+   [adrian]
+	- finally got rid of get_status symbol-missing errors for plugins (by using inline getter)
+
+2009-10-22
+   [adrian]
+	- cleanups and fixes in download thread
+
+2009-10-21
+   [adrian]
+	- removed deprecated PLUGIN_MISSING download/plugin status
+	- implemented suggestion #2882388 (.part extension for unfinished downloads)
+	- few minor cleanups
+	- decreased usage of I/O, processor and memory when being idle (no connection, no download. there should be no hdd I/O now)
+	- removed definition of IS_PLUGIN when compiling plugins
+	- removed neccessity of compiling and linking download_container.cpp into plugins
+
+2009-10-20
+   [adrian]
+	- added status DOWNLOAD_RECONNECTING to ddclient-wx t
+	- made ddconsole less case sensitive
+	- improved layout of ddconsole's help command
+
+2009-10-19
+   [adrian]
+	- fixed race condition resulting in get_next_downloadable returning wrong download IDs
+	- fixed incorrect DL_PLUGIN_STATUS settings in some cases (preventing from correct reconnect_needed detection)
+	- fixed uploaded.to plugin not reporting if multiple downloads are tried on free downloads at the same time
+	- fixed ddclient-php's list showing "starting download" if the download size can not be detected
+
+2009-10-17
+   [adrian]
+	- reverted IPv6 compatibility because of problems on Windows
+
+2009-10-16
+   [adrian]
+	- fixed libboost-thread dependency bug in ddconsole
+	- added support for '~' in the beginning of a path in a configuration file, which will be replaced with $HOME
+	- removed max packet size of 9999 bytes in netpptk
+	- usage of AF_INET6 instead of AF_INET to get ipv6 compatible (netpptk)
+	- automatically create missing folders on startup (for dlist file, logs and downloads)
+
+2009-10-15
+   [adrian]
+	- make_version script now creates complete debian packages
+	- fixed insertion of spaces when modifying conf variables
+	- fixed possible segfault in cfgfile parser
+	- fixed rapidshare premium stuff
+
+2009-10-14
+   [susanne]
+	- added configuration of premium accounts at ddclient-wx
+	- added variables overwrite_files and refuse_existing_links to config dialog at ddclient-wx
+
+2009-10-13
+   [adrian]
+	- updated "help" command in ddconsole
+	- added easy way to make a user-only installation. config files are now also read
+	  form ~/.downloaddaemon/*.conf for the executing user. therefore local
+	  install is nothing more than prefix=~ and conf-files in ~/.downloaddaemon
+	- modified config file template
+	- wrote guide on how to start developing DownloadDaemon
+	- cleaner handling for global variables (just #include "global.h" to get all of them)
+	- small performance improvement in logger (in some cases)
+	- added init script to start downloaddaemon automatically (not being installed yet)
+
+2009-10-12
+   [adrian]
+	- Replaced PLUGIN_* error messages with human readable messages (used for DL_LIST)
+	- DOWNLOAD_RECONNECTING stats for all waiting downloads when doing a reconnect
+	- proper logging for LIST_PERMISSION errors in download_container::dump_to_file()
+	- shortened "Download Running" status line in ddclient-wx to safe space...
+   [susanne]
+	- ddclient-wx now shows download speed if it's known
+
+2009-10-11
+   [adrian]
+	- added configuration variable refuse_existing to refuse existing links when they are added
+	- added configuration variable overwrite_files to decide if files should be overwritten if a new download
+	  starts and another file with the same name already exists
+	- fixed some errors in plugin-system and possible segfault in rapidshare plugin
+   [susanne]
+        - added delete dialog to ddclient-wx, which lets user choose between several answers about file delete
+
+2009-10-07
+   [adrian]
+	- ticking download-waiting times, starting new downloads each second, etc timers are now started in a separate
+	  thread to make them more accurate
+	- detach mgmt_thread after creation and delete the object
+	- support for https:// downloads (if libcurl is compiled with support)
+	- added new column to DDP DL LIST: current download speed
+	- implemented display of current download speed in ddclient-php
+	- implemented premium account setup in ddclient-php
+	- fixed download_resumption checking if a plugin allows parallel downloading istead of checking if it allows resumption
+	- versioning-script now also builds the source .tar.bz2 packages (will be extenden to also build debian pkgs some day..)
+	- fixed PREMIUM SET using a wrong password config variable
+	- fixed ddclient-php not correctly showing wait-times before a download starts
+	- fixed wait_seconds not getting reset after a reconnect
+	- only reconnect if there is a PLUGIN_LIMIT_REACHED, not if there is a PLUGIN_SERVER_OVERLOADED
+
+2009-10-06
+   [adrian]
+	- Got rid of download_thread checking for new downloads each second, it's now done by the wait-time-ticker thread
+	- implemented PREMIUM LIST command which returns all hosts for which premium support is provided
+	- some usability improvements
+	- added GPL header to ddclient-php files
+	- fixed possible memory leak in netpptk (very rare)
+
+2009-10-05
+   [adrian]
+	- additional customizability when errors occur (time to wait before retry)
+	- Added that retry-timers and made them configurable in downloaddaemon.conf
+	- Added support for those retry-timeouts in ddclient-wx and PHP client (PHP stuff not tested yet, have no apache here)
+	- added new management target PREMIUM to control premium account setup
+	- extended PHP client configuration. You can now also set up reconnect stuff
+
+2009-10-04
+   [adrian]
+	- Fixed an ugly bug causing crashes when adding a Download
+	- correctly handle download urls containing GET data in the URL
+
+2009-10-03
+   [adrian]
+	- Made everything ready for version 0.2
+	- correctly handle 404 responses from http servers
+	- implemented premium support for rapidshare.com (can't really test because
+	  I don't have an account, but it should work in theory)
+
+2009-10-02
+   [adrian]
+	- ddconsole is now a bit more "console like" with possibility to do everything with start-arguments or alternatively in console mode
+	- renamed ddclient to ddconsole, because ddclient is already used by another program (dynDNS client)
+	- some minor code-improvements to prevent mistakes in the future
+	- fixed PATH-finding in ddclient-wx (windows-testing still needed)
+	- fixed building everything at once (basically "cmake .." or "cmake ../src")
+
+2009-10-01
+   [adrian]
+	- deactivate downloads if we don't have write permissions
+
+2009-09-28
+   [susanne]
+	- fixed sizer bug at ddclient-wx
+
+2009-09-22
+   [adrian]
+	- small crashfix when receiving an empty download list
+	- reconnect support for some belkin routers (for now only routers without a password.. (belkin routers are completely insecure anyway)
+	- improved program data finding again, for server and client
+	- Added a program to convert JDownloaders Curl/LiveHeader reconnect scripts in DownloadDaemon C++ reconnect plugins.. partly working
+   [susanne]
+	- fixed integer range problem at ddclient-wx
+	- reconnect panel at ddclient-wx is now fully working
+	- adjusted column size at ddclient-wx
+
+2009-09-21
+   [adrian]
+	- DownloadDaemon now uses proper unix-direcotries (/usr/[local/]bin and /usr/[local/]share/downloaddaemon,
+	  as well as /etc/downloaddaemon for configuration files. To keep developing DownloadDaemon, you need
+	  to have called "make install" once, to create the download target default folder /var/downloads and copy
+	  the config files to /etc/downloaddaemon. The binaries are always used from the svn root (plugins, main program
+	  when you run it in the IDE (to do so, you might have to change permissions/owner for /var/downloads and /etc
+	  /downloaddaemon))
+	- replaced some spaces with tabs - damn CodeBlocks default settings
+	- improved locating of program data at ddclient-wx with realpath()
+
+2009-09-20
+   [susanne]
+	- fixed ios flag at ddclient-wx
+	- added reconnect panel at ddclient-wx (gui)
+
+2009-09-16
+   [susanne]
+	- changed hotkeys for ddclient-wx
+
+2009-09-13
+   [adrian]
+	- Made downloaddaemon debian-package ready
+	- hopefully fixed bug that get_next_downloadable() sometimes tells crap
+	- added downloaddaemon package-versioning to script
+	- updated CMakeLists
+
+2009-09-12
+   [adrian]
+	- Made ddclient-wx a bit more debian-package ready
+	- added script to automate version/source-package generation (currently only ddclient-wx)
+	- update CMakeLists
+
+2009-09-09
+   [susanne]
+	- changed add downloads dialog at ddclient-wx
+
+2009-09-08
+   [susanne]
+	- replaced some buttons at ddclient-wx
+
+2009-09-04
+   [adrian]
+	- fixed crash when rapidly deactivating/activating downloads
+	- fixed problems with deletion/deactivation of running downloads
+	- reimplemented automatic reconnection
+	- reconnect plugins are now, similar to host-plugins, shared libraries
+	- updated function and reconnect-tutorial documentation
+	- implemented reconnect script for Aquip a-wlan-3
+
+2009-09-03
+   [susanne]
+	- made ddclient-wx show every change immediately instead after the next reload (which may take up to 2 seconds)
+	- moved downloads at ddclient-wx (via priority up/down) now stay selected for better usability
+
+2009-09-02
+   [adrian]
+	- completely rewrote intern structure of download-list modifications (very huge updates, might still be buggy)
+	- simplified plugin API a bit
+	- for now, reconnect scripts are not supported any more, will re-implement the functionality again soon
+	- improved thread safety
+	- fixed DL DOWN and DL UP which were broken after the rewrite
+
+2009-09-01
+   [susanne]
+	- fixed downloading activation/deactivation for windows (OS) and added menu item at ddclient-wx
+	- added program icon and own toolbar icons at ddclient-wx
+
+2009-08-30
+   [adrian]
+	- fixed DDP DL DOWN
+   [susanne]
+	- added priority change of downoads at ddclient-wx
+	- finished configure dialog at ddclient-wx
+
+2009-08-28
+   [susanne]
+	- added shortcut ctrl+a for all line selection at ddclient-wx
+	- finished configure dialog gui at ddclient-wx, does only change the password right now
+
+2009-08-27
+   [adrian]
+	- fixed bug in rapidshare plugin which results in a infinite loop if a file was removed from the server
+	- ddclient-wx now uses proper bin and share folders and correctly locates itsself in $PATH
+	- added possibility to get endpoint info
+	- added logging of where a connection comes from and who entered wrong passwords (ip-addresses)
+	- fixed event-sending to reload download list in ddclient-wx
+   [susanne]
+	- changed download list reloading to be done by gui thread via custom event at ddclient-wx
+	- added a menu entry and shortcut for most of the toolbar buttons at ddclient-wx
+	- about dialog at ddclient-wx now shows the build date and time
+	- added deselection of all lines after deleting some at ddclient-wx
+
+2009-08-26
+   [adrian]
+	- Tried to make everything a bit more threadsafe
+	- implemented mt_string, a wrapper around std::string to make it threadsafe
+   [susanne]
+	- added configure dialog at ddclient-wx, which only changes the password right now
+	- downloading can now be activated and deactivated for all downloads at once at ddclient-wx
+
+2009-08-23
+   [adrian]
+	- Rewrote complete plugin system to use shared libraries instead of executables
+	- Changed possible error-string for DL LIST
+	- fixed small bugs in ddclient-php
+	- made ddclient-wx compatible with new status messages
+	- updated uploaded.to/rapidshare.com plugins to fit in the new system
+	- updated plugin-writing documentation
+   [susanne]
+	- added file delete before deleting the download at ddclient-wx
+	- ddclient-wx now asks you if you really want to delete downloads
+	- ddclient-wx now tells you to connect before you can try to add downloads
+
+2009-08-21
+   [adrian]
+	- tried to bring a bit more thread safety
+	- fixed bug in ddclient-php when there are a lot of downloads (packet size/wring netpptk protocol implementation)
+	- added cleanup code for deleted download objects to save a lot of memory on long uptimes
+	- fixed SIGPIPE crash when reading/writing invalid sockets
+	- made ddclient-wx compatible with windows
+	- made ddclient-wx compatible with older gcc versions
+
+2009-08-18
+   [susanne]
+	- added dialog to add downloads at ddclient-wx
+	- added logic to delete downloads at ddclient-wx
+
+2009-08-17
+   [susanne]
+	- ddclient-wx: added doxygen comments
+	- project website link works now at ddclient-wx about dialog
+
+2009-08-16
+   [susanne]
+	- ddclient-wx: changed appearance of about dialog
+
+2009-08-10
+   [adrian]
+	- ftp direct links are now also supported
+
+2009-08-09
+   [adrian]
+	- Implemented functionality to continue downloads that were started but broke up
+	- Changed behaviour if no plugin is found for a download: Download the file directly (makes direct links possible)
+	- added CMakeLists file for ddclient-wx
+	- Added new reconnect policy "PUSSY" which only reconnects when REALLY necessary
+	- fixed race-condition when adding downloads too fast
+	- added documentation for writing reconnect scripts
+	- small improvement in ddclient
+	- improved netpptk and fixed a bug in tkSock::bind. valid/operator bool now means as much as
+	  "represents a valid connection" and not "represents a valid socket descriptor"
+	- tested the ROUTER target a bit more and included it into cmake list files
+	- finisehd (but mostly untested) implementation of the reconnect script engine
+	- DownloadDaemon should now handle relative and absolute paths in the configuration file correctly
+   [susanne]
+	- added download list reloading every two seconds at ddclient-wx
+	- ddclient-wx: download list columns now resize on client resize
+	- ddclient-wx: recreated about dialog
+
+2009-08-08
+   [adrian]
+	- basic implementation for reconnect script execution. configuration still missing
+   [susanne]
+	- included authentification at ddclient-wx connect dialog
+	- ddclient-wx shows download list now
+
+2009-08-07
+   [susanne]
+	- ddclient-wx is now able to connect to servers
+
+2009-08-06
+   [adrian]
+	- made ddclient more userfriendly for end-users
+
+2009-08-05
+   [adrian]
+	- fixed crash when finished downlaods get deactivated/activated
+	- corrected moving downloads up/down when other downloads have been deleted before
+   [susanne]
+	- created connect dialog (gui) for ddclient-wx, doesn't do anything yet
+
+2009-08-04
+   [adrian]
+	- fixed missing freeaddrinfo() call -> memory leak
+	- The default DownloadDaemon port is now 56789
+	- extended plugin api
+	- created uploaded.to plugin
+   [susanne]
+	- rewrote ddclient-wx
+
+2009-08-03
+   [adrian]
+	- Implemented basic DownloadDaemon configuration in PHP interface
+	- Implemented the FILE target for remote management now (mostly)
+	- Almost complete rewrite of the management api and protocol implementation
+	- Added a few new features to protocol
+	- added implementation for those features except for the FILE target which is
+	  not yet supported
+	- Fixed a nasty security hole in netpptk
+	- updated protocol specification
+	- made php interface ready for new protocol specification
+
+2009-08-02
+   [adrian]
+	- Fixed partly missing log-entry
+
+2009-08-01
+   [adrian]
+	- Again fixed some bugs
+	- fixed an ugly socket-descriptor leak in network library
+
+2009-07-31
+   [adrian]
+	- Lot of bug fixes
+	- PHP interface now mostly working
+
+2009-07-29
+   [adrian]
+	- Fixed some nasty bug in netpptk
+	- further development of the php-frontend
+
+2009-07-28
+   [adrian]
+	- made a class for the download container - cleaner code and more object oriented
+	- fixed a lot of minor bugs
+	- started working on the php-base web interface (login and more
+	  or less downloadlisting seems to work, it's just a few functions
+	  to make life easier in the future)
+
+2009-07-25
+   [adrian]
+	- Changed from the crappy makefiles to cmake.. more or less successfully
+
+2009-07-24
+   [adrian]
+	- Further improvement of the gui client (still not functional at all)
+	- Implemented option for timed downloads (only download between two
+	  specific points in time)
+
+2009-07-23
+   [adrian]
+	- Made first developments on a gui client
+
+2009-07-22
+   [adrian]
+	- Made repository public and opened the initial version of DownloadDaemon
+	  including a hard-to-use commandline client and a plugin for rapidshare.com
+	  This version has the general ability to download and to get managed by a
+	  remote host. The first milestone might be reached soon.

@@ -1,0 +1,21 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /stat1.htm HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+page=status&Conn=Disconnect&ConnStatus=Connected&pptpConn=&PPTPConnStatus=&renew=&DHCPConnStatus=&scrollTop=&isclear=3
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /stat1.htm HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+page=status&Conn=Connect&ConnStatus=Disconnected&pptpConn=&PPTPConnStatus=&renew=&DHCPConnStatus=&scrollTop=&isclear=3
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

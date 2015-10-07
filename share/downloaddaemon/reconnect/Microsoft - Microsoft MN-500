@@ -1,0 +1,29 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /login.htm HTTP/1.1
+            Host: %%%routerip%%%
+
+page=login&pws=%%%pass%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /home.htm HTTP/1.1
+            Host: %%%routerip%%%
+            Cookie: %%%Set-Cookie%%%
+
+fs=1&release=2&connectflag=2&page=status
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /home.htm HTTP/1.1
+            Host: %%%routerip%%%
+            Cookie: %%%Set-Cookie%%%
+
+fs=1&release=1&connectflag=1&page=status
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

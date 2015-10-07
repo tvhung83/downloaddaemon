@@ -1,0 +1,21 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /?0=13&1=Shared_Internet&5=2 HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+0=13&1=Shared_Internet&5=2
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /?0=12&1=Shared_Internet&5=2 HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+0=12&1=Shared_Internet&5=2
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

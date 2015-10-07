@@ -1,0 +1,12 @@
+This (for now very short) guide explains how to install and configure DownloadDaemon as a developer.
+To develop DownloadDaemon (or one of the clients), some special things need to be done, because you probably want
+to execute DD as a normal user (for more comfortable debugging and IDE usage).
+The best way to develop is by using Qt Creator, since it can handle the CMakeFiles directly.
+You can also run CMake with the -g parameter to create project files for your prefered IDE (if supported by CMake).
+
+1: Install DD the regular way (cmake on source tree && make install)
+2: modify the configuration files to make them non-root-console firiendly (ie: set log_file to "stdout" and the download folder to something /home/xxs/Downloads or some other writeable directory of your user)
+3: chmod -R /etc/downloaddaemon a+rw
+4: set the environment-variable "DD_DATA_DIR" to your build directory. I personally prefer to import the Project in QtCreator this way: Start qt-creator, Open src/daemon/CMakeLists.txt in it. When prompted for a build-directory,
+I usually use <svn-root>/trunk/build or something like that. When prompted for the CMake flags, use
+"-DCMAKE_CXX_FLAGS=-g -Wall". Finally, when you run DownloadDaemon in QtCreator for the first time, you are prompted what exactly to run. Chose the DownloadDaemon binary in <svn-root>/trunk/build and at the bottom of the window, you can set the runtime-environment (defaults to "Same as Build-environment"). You have to change that and add the DD_DATA_DIR=./ variable.

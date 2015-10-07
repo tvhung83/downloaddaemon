@@ -1,0 +1,27 @@
+{err_message}
+
+<form action="index.php?site=add" method="post" enctype="multipart/form-data" id="add_form">
+	<fieldset>
+		<legend>{L_Add_single_DL}:</legend>
+		<label for="title">{L_Title}:</label><input type="text" name="title" id="title" /><br />
+		<label for="url">{L_URL}:</label><input type="text" name="url" id="url" /><br />
+		<label for="pkg_single_sel">{L_PKG}:</label><select name="pkg_single_sel" id="pkg_single_sel"><option value="-1">{L_sel_type}:</option>{content}</select>
+		<input type="text" name="pkg_single" /><br />
+		<label for="submit_single"> </label><input type="submit" value="{L_Add_single_DL}" name="submit_single" id="submit_single" class="submit" />
+	</fieldset>
+
+	<fieldset>
+		<legend>{L_Add_multi_DL}:</legend>
+		<label for="titles_urls">{L_URL}s:</label><textarea name="titles_urls" cols="120" rows="20" id="titles_urls"></textarea><br />
+		<label for="pkg_multi_sel">{L_PKG}:</label><select name="pkg_multi_sel" id="pkg_multi_sel"><option value="-1">{L_sel_type}:</option>{content}</select>
+		<input type="text" name="pkg_multi" /><br />
+		<label for="submit_multi"> </label><input type="submit" value="{L_Add_multi_DL}" name="submit_multi" id="submit_multi" class="submit" />
+		{L_Add_multi_DL_Desc}
+	</fieldset>
+
+	<fieldset>
+		<legend>{L_Add_DLC}:</legend>
+		<label for="upload_dlc">{L_DLCFILE}:</label><input type="file" name="dlcfile" id="dlcfile" size="40" /> <br />
+		<label for="submit_cnt"> </label><input type="submit" value="{L_Add_DLC}" name="submit_cnt" id="submit_cnt" class="submit" />
+	</fieldset>
+</form>

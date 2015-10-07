@@ -1,0 +1,120 @@
+This is a short introduction about how to write new Plugins for the downloader to support more hosters.
+Generally a plugin can only be written in C++ (C might be supported soon).
+Plugins are basically shared libraries which are loaded at runtime to execute some funtions.
+Good examples can be found for the rapidshare.com and uploaded.to plugins in src/daemon/plugins.
+For an example of captcha-decoding, check the netload.in or megaupload.com plugin.
+A plugin always has to be named after its hoster, plus the ".so" file extension and "lib" file prefix for shared libraries.
+so for rapidshare.com, you will get a plugin-library called "librapidshare.com.so".
+Anyhow, all work should be done by the plugin except for the final step of downloading the file. 
+The main program will do that.
+Now let's start!
+every plugin has to define two functions for the downloader, with the following prototypes:
+
+plugin_status plugin_exec(plugin_input &inp, plugin_output &outp)
+extern "C" void plugin_getinfo(plugin_input &inp, plugin_output &outp)
+
+The extern "C" is required in order to make execution possible. The plugin will fail if this is missing.
+in order to get the needed types from above, you need to include plugin_helpers.h. View that file to see what variables the structs contain.
+
+optionally, the following functions can also be defined:
+void post_process_download(plugin_input &inp)
+bool get_file_status(plugin_input &inp, plugin_output &outp)
+If you want to use them, you have to #define
+PLUGIN_CAN_PRECHECK
+and
+PLUGIN_WANTS_POST_PROCESSING
+respectively BEFORE including plugin_helpers.h.
+At least the PLUGIN_CAN_PRECHECK function is recommended. See below for more info.
+
+
+the first function, plugin_exec is the main plugin function. The parameters are as follows:
+
+plugin_input &inp:
+	This parameter will feed you the parameters specified in the plugin_input struct. If your plugin/hoster supports premium access,
+	username/password will be specified in here.
+
+plugin_output &outp:
+	This structure contains information the downloader needs from you.
+	std::string download_url 	= the final URL to download from. If you are done with your plugin, this needs to be specified.
+	std::string download_filename	= Some hosters (e.g. uploaded.to) do not specify their filename in the URL. If it's a simple URL (like asdf.com/hello.rar, 
+					  you don't need to fill this out. If it's a special URL (uploaded.to/asdf, filename should be Hello.rar), this needs to
+					  be specified. As of version 0.9 DownloadDaemon also checks the Content-Disposition header. If the server sends something
+					  like this in the header, you don't have to set download_filename: Attachment; filename=Hello.rar.
+	bool allows_resumption		= Specifies if the download shoul be resumed if the download on this file has been partly finished before.
+					  this is not supported by all hosters.
+	bool allows_multiple		= This specifies if the hoster currently supports multiple downloads at the same time. (If this depends on if you are
+					  a premium user or not, make your answer dependent.
+
+When your plugin finished, you may return one of the following values: 
+PLUGIN_SUCCESS, PLUGIN_ERROR, PLUGIN_LIMIT_REACHED, PLUGIN_FILE_NOT_FOUND, PLUGIN_CONNECTION_ERROR, PLUGIN_SERVER_OVERLOADED,
+PLUGIN_MISSING, PLUGIN_INVALID_HOST, PLUGIN_CONNECTION_LOST, PLUGIN_WRITE_FILE_ERROR, PLUGIN_AUTH_FAIL
+
+You should consider making your plugin premium account compatible. You will receive the credentials from the plugin_input structure, if present.
+DownloadDaemon supports basic http authentication for premium accounts. Your plugin only needs to set the authentication options into the
+curl handle returned by get_handle(). If the authentication method is just a simple http auth, DownloadDaemon will check if they are wrong automatically.
+If the server does not return a 401 answer if the credentials are wrong, you need to do manual validity checks and return PLUGIN_AUTH_FAIL if the
+credentials are wrong.
+
+plugin_helpers.h implements a few more functions you might need. Check out that header file, the beginning are just a bunch of declarations with
+inline-documentation. Check it out over there.
+Also, please note that you should not create your own curl-handles for connecting to the hoster. Use the curl-handle returned by get_handle().
+The handle you will get from there will already have some basic setup, that is required in some cases (e.g. if alternating proxies are enabled,
+the proxy is set in the handle. So you should always use that).
+
+
+In some rare cases, it might be possible that the plugin has to check if the downloaded file is valid (e.g. if parsing is always the same and only
+the resulting downloaded file will either be the desired file or some error-page in html. In such cases you can recheck if the downloaded file is valid.
+To do so, you have to 
+#define PLUGIN_WANTS_POST_PROCESSING
+BEFORE including plugin_helpers.h!
+then you can define a function with this prototype:
+	void post_process_download(plugin_input &inp)
+For an example, check the netload.in plugin, which does exactly that.
+
+
+Decoding captchas:
+DownloadDaemon uses gocr to decode captchas. This, however, is optional. If gocr is not installed, captcha-decoding will not work.
+To make your plugin decode captchas, you can use the full set of gocr functionality.
+First, you have to download the captcha file from the hoster and save it in a std::string variable (NOT to a file).
+then create an opject of type "captcha". the constructor only takes one argument: the captcha-string.
+the next step is decoding the captcha. call the "process_image" method of your captcha object with the following prototype:
+std::string process_image(std::string gocr_options, std::string img_type, bool use_db = false, bool keep_whitespaces = false)
+This method returns the result from gocr.
+The first parameter sets the options for gocr (could be someting like "-m 2 -a 20 -C 0-9").
+The second option is the file-type of the image. Just pass the file-ending it usually has ("png", "jpg", "gif", etc).
+For complicated captchas, usually gocr-databases are used. If you don't know how to create such a database, ask google.
+You just put that database files in share/downloaddaemon/plugins/captchadb/<host>.
+The last parameter is for stripping out all whitespaces of the resulting string, so if gocr detects "123 4", the function will return "1234" instead.
+
+You don't have to take care of the captcha-max-retry configuration. If you try to decode more captchas as specified in the configuration, the captcha-class will
+throw an exception to exit the plugin. This means you may not put the captcha decoding process in a try{} catch(...)! This is not allowed! (or if you do so, you have to exit
+the plugin manually).
+
+POST PROCESSING DOWNLOADED FILES:
+Some hosters give you an error message instead of a file, even if parsing was just as normal. You may post-process downloaded files with your plugin.
+Check the netload.in or the megaupload.com plugin for an example. Basically, you have to #define PLUGIN_WANTS_POST_PROCESSING before including plugin_helpers.h.
+Then you can define a function with this prototype:
+void post_process_download(plugin_input &inp),
+which will be called if the download succeeded.
+
+
+DownloadDaemon supports getting the status of a file (online, unreachable, deleted, file size ...) before downloading should actually start.
+Many one-click-hosters allow getting such data without starting the download. So if you want to define the bool get_file_status(plugin_input &inp, plugin_output &outp)
+function, go for it.
+Just connect to the URL passed to you by get_url(), check its condition, and return the result in the outp parameter.
+You only need to/should fill the outp.file_size and the outp.file_online members.
+For an example, see the rapidshare.com plugin
+The return value more or less defines if this plugin can really check the availability of the file. Only return "false", if this plugin is a decrypter for a container-page
+like netfolder.in. If you return no, DownloadDaemon will call the plugin normally to get the real downloads (the plugin should call replace_this_download if its a decrypter).
+Then, when the plugin-call finished, there are many new downloads in the list that can now be prechecked.
+So basic rule: If your plugin is a decrypter, return false. Else, check the status, fil in the plugin_output struct, return true.
+
+
+If you need more functionality to support your specific hoster, please write me, Adrian Batzill (see AUTHORS file) an email. I will then implement it.
+
+
+
+NOTE: For simplicity, you can call many helpers that DownloadDaemon contains (mainly for string parsing).
+You can use the whole set of functions from src/daemon/tools/helperfunctions.h as well as the regular expression eingine
+defined in src/include/reg_ex/reg_ex.h.
+For supported regex syntax, refer to the readme file in http://sourceforge.net/projects/tiny-rex/files/t-rex/trex%201.3/trex_1_3.tar.gz/download

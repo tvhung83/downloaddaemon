@@ -1,0 +1,21 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /Tools HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+Tools(1)=%20%20%20%20Hang%20Up%20%20%20%20%20
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /Tools HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+Tools(1)=%20%20%20%20%20Dial%20Up%20%20%20%20%20%20
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

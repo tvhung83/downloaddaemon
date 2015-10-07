@@ -1,0 +1,76 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+        GET / HTTP/1.1
+        Host: %%%routerip%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+
+    [[[STEP]]]
+        [[[REQUEST]]]
+        GET /cgi-bin/webcm?getpage=..%2Fhtml%2Findex.html HTTP/1.1
+        Host: %%%routerip%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+
+    [[[STEP]]]
+        [[[REQUEST]]]
+        GET /cgi-bin/webcm?getpage=../html/index_para.html HTTP/1.1
+        Host: %%%routerip%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+
+    [[[STEP]]]
+        [[[REQUEST]]]
+        GET /cgi-bin/webcm?getpage=../html/status_hide.html HTTP/1.1
+        Host: %%%routerip%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+
+    [[[STEP]]]
+        [[[REQUEST]]]
+        GET /cgi-bin/webcm?getpage=..%2Fhtml%2Findex_real.html&amp;var%3Aconname=connection0&amp;var%3Acontype=pppoe HTTP/1.1
+        Host: %%%routerip%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+
+    [[[STEP]]]
+        [[[REQUEST]]]
+        GET /cgi-bin/webcm?getpage=../html/utilities.html HTTP/1.1
+        Host: %%%routerip%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+
+    [[[STEP]]]
+        [[[REQUEST]]]
+        GET /js/roll_over.js HTTP/1.1
+        Host: %%%routerip%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+
+    [[[STEP]]]
+        [[[REQUEST]]]
+        GET /js/nav.js HTTP/1.1
+        Host: %%%routerip%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+
+    [[[STEP]]]
+        [[[REQUEST]]]
+        POST /cgi-bin/webcm HTTP/1.1
+        Host: %%%routerip%%%
+
+getpage=..%2Fhtml%2Fbasic_reboot_congrats.html&amp;logic%3Acommand%2Freboot_ready=&amp;var%3Afrom=fromreboot
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+
+    [[[STEP]]]
+        [[[REQUEST]]]
+        POST /cgi-bin/webcm HTTP/1.1
+        Host: %%%routerip%%%
+
+getpage=..%2Fhtml%2Fbasic_reboot_congrats.html&amp;logic%3Acommand%2Fgui_reboot=
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+
+[[[/HSRC]]]

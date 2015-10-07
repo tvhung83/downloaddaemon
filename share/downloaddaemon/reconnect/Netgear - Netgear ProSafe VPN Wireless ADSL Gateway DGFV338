@@ -1,0 +1,26 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /platform.cgi HTTP/1.1
+            Host: %%%routerip%%%
+
+web0x120010=admin&web0x120011=ccl&umi.loginAuth=Login
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /platform.cgi HTTP/1.1
+            Host: %%%routerip%%%
+            Cookie: %%%Set-Cookie%%%
+
+web0x220001=1&umi.wan1Disconnect=1
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            GET / HTTP/1.1
+            Host: http://www.google.de
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

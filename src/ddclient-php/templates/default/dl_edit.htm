@@ -1,0 +1,10 @@
+{err_message}
+
+<form action="index.php?site=manage&amp;action=edit&amp;pkg_id={PKG_ID}&amp;id={DL_ID}" method="post">
+    <fieldset>
+    <legend>{L_Site}</legend>
+        <label for="dl_edit_title">{L_DL_TITLE}</label><input type="text" name="dl_edit_title" id="dl_edit_title" value="{OLD_DL_TITLE}" size="100" /><br />
+        <label for="dl_edit_url">{L_DL_URL}</label><input type="text" name="dl_edit_url" id="dl_edit_url" value="{OLD_DL_URL}" size="100" /><br />
+        <label for="apply"> </label><input type="submit" name="apply" value="Apply" id="apply" class="submit" />
+    </fieldset>
+</form>

@@ -1,0 +1,10 @@
+{err_message}
+
+<form action="index.php?site=manage&amp;action=edit&amp;pkg_id={PKG_ID}&amp;id={DL_ID}" method="post">
+    <fieldset>
+    <legend>{L_Site}</legend>
+        <label for="pkg_edit_name">{L_PKG_NAME}</label><input type="text" name="pkg_edit_name" id="pkg_edit_name" value="{OLD_PKG_NAME}" size="100" /><br />
+        <label for="pkg_edit_passwd">{L_PKG_PASS}</label><input type="text" name="pkg_edit_passwd" id="pkg_edit_passwd" value="{OLD_PKG_PASS}" size="100" /><br />
+        <label for="apply"> </label><input type="submit" name="apply" value="Apply" id="apply" class="submit" />
+    </fieldset>
+</form>

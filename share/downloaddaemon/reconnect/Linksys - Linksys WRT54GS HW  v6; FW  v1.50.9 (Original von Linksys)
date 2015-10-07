@@ -1,0 +1,21 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /rstatus.tri HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+action=Disconnect&wan_pro=2&conn_stats=300&layout=de
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /rstatus.tri HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+action=Connect&wan_pro=2&conn_stats=-1&layout=de
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

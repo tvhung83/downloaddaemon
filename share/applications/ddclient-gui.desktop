@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=DownloadDaemon GUI Client
+Version=0.9
+Encoding=UTF-8
+Comment=Manage your DownloadDaemon server
+Exec=ddclient-gui
+Icon=ddclient-gui.png
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Network;FileTransfer;

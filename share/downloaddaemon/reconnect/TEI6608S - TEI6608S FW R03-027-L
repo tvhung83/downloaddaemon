@@ -1,0 +1,24 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            GET /if.cgi?redirect=sys_status.htm&failure=fail.htm&type=wan_state_reset&ifname=ppp0&ifstatus=Up&ifcmd=DISCONNECT&submit() HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            GET /if.cgi?redirect=sys_status.htm&failure=fail.htm&type=wan_state_reset&ifname=ppp0&ifstatus=Down&ifcmd=CONNECT&submit() HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            GET /man.cgi?redirect=login.htm&failure=fail.htm&type=logout&logout=Logout&submit() HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

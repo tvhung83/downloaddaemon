@@ -1,0 +1,37 @@
+<tr class="{T_TR_CLASS}">
+	<td>{T_PKG_ID}</td>
+	<td>{T_DL_ID}</td>
+	<td>{T_DL_Title_short}</td>
+	<td>{T_DL_URL_short}</td>
+	<td class="{T_DL_Class}">
+		<?php 
+		if ("{T_PKG_ID}" == "") {
+			echo "<div class=\"progress-container\"><span>";
+			if (strpos("{T_DL_Status}", "Captcha") !== FALSE)
+				echo "<a href=\"index.php?site=get_captcha&id={T_DL_ID}\">";
+			echo "{T_DL_Status}";
+			if (strpos("{T_DL_Status}", "Captcha") !== FALSE)
+				echo "</a>";
+			echo "</span><div style=\"width: {T_DL_Percent}%;\" align=\"left\"></div></div>";
+		}
+		
+		?>
+	</td>
+	<td>
+		<?php if("{T_PKG_ID}" == "") { ?>
+		<a href="index.php?site=manage&amp;action={T_Activate_Button}activate&amp;id={T_DL_ID}&amp;pkg_id={T_PKG_ID}" title="{Activate}"><img src="{T_SITE_URL}/templates/default/css/images/{T_Activate_Button}activate.png" alt="{Activate}" /></a>
+		<?php } else { ?>
+		<a href="index.php?site=manage&amp;action=activate&amp;id=&amp;pkg_id={T_PKG_ID}" title="{Activate}"><img src="{T_SITE_URL}/templates/default/css/images/activate.png" alt="{Activate}" /></a>
+		<a href="index.php?site=manage&amp;action=deactivate&amp;id=&amp;pkg_id={T_PKG_ID}" title="{Activate}"><img src="{T_SITE_URL}/templates/default/css/images/deactivate.png" alt="{Activate}" /></a>
+		<?php } ?>
+		
+		<a href="index.php?site=manage&amp;action=delete&amp;id={T_DL_ID}&amp;pkg_id={T_PKG_ID}" title="{L_Delete}"><img src="{T_SITE_URL}/templates/default/css/images/delete.png" alt="{L_Delete}" /></a>
+		
+		<a href="index.php?site=manage&amp;action=move&amp;id={T_DL_ID}&amp;pkg_id={T_PKG_ID}" title="{L_Move}"><img src="{T_SITE_URL}/templates/default/css/images/up.png" alt="{L_Move}" /></a>
+		
+		{T_DelFile_Button}
+		
+		<a href="index.php?site={T_EDIT_SITE}&amp;id={T_DL_ID}&amp;pkg_id={T_PKG_ID}" title="{L_Edit}"><img src="{T_SITE_URL}/templates/default/css/images/edit.png" alt="{L_Edit}" /></a>
+		
+	</td>
+</tr>

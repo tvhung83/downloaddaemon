@@ -1,0 +1,59 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          DownloadDaemon
+# Required-Start:    $network
+# Required-Stop:     $network
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: DownloadDaemon download manager service
+### END INIT INFO
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=DownloadDaemon
+NAME=DownloadDaemon
+DESC="DownloadDaemon download manager service"
+
+case "$1" in
+  start)
+	if [ "$(id -u)" != "0" ]; then
+   		echo "This script must be run as root" 1>&2
+   		exit 1
+	fi
+	DownloadDaemon -d 2> /dev/null
+	;;
+  stop)
+	if [ "$(id -u)" != "0" ]; then
+   		echo "This script must be run as root" 1>&2
+   		exit 1
+	fi
+	killall DownloadDaemon 2> /dev/null
+	;;
+  reload|force-reload)
+       echo "Unsupported option"
+       ;;
+  restart)
+	if [ "$(id -u)" != "0" ]; then
+   		echo "This script must be run as root" 1>&2
+   		exit 1
+	fi
+	killall DownloadDaemon 2> /dev/null
+	DownloadDaemon -d 2> /dev/null
+	;;
+  status)
+	echo "Status of DownloadDaemon:"
+	if [ -z `pidof DownloadDaemon` ]; then
+		echo "$NAME is not running."
+		exit 3
+	else
+		echo "$NAME is running."
+		exit 0
+	fi
+	;;
+  *)
+	N=/etc/init.d/${0##*/}
+	echo "Usage: $N {start|stop|restart|status}" >&2
+	exit 1
+	;;
+esac
+
+exit 0

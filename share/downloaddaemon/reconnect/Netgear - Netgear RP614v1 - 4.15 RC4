@@ -1,0 +1,21 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /post-query HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+Load=Q&connTime=0:00:10&connStatus=Connected&getIP=OK&pppoeAct=2&Button=Apply
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /post-query HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+Load=Q&connTime=00:00:00&connStatus=Disconnected&getIP=---&pppoeAct=1&Button=Apply
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]
