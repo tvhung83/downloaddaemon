@@ -1,0 +1,19 @@
+- make it possible to download files through the mgmt interface
+- write a few plugins
+- Make a multiuser-system out of downloaddaemon with partly individual configuration (download-folder) and administration...
+- auto-updater for plugins and reconnect scripts
+- plugin-properties: makes it possible to set plugin-specific options if the plugin can handle them (e.g. one-time passwords for containers, etc)
+- use Angelscript or similar for plugins and implement auto-update functionality for plugins
+
+- fix splitted packages when they are renamed during downloading
+- set package title when uploading a container
+- set subfolders for extraction and downloading->done!
+- estimated total time?
+- quick-enable and disable download-timing
+- display server time in clients?
+- manual router reconnect
+
+- view unrar state in ddclient
+- add unrar now button in ddclient
+- add megaupload free account
+- add global option check if file !=html (known plugins)

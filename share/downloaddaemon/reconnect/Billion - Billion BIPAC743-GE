@@ -1,0 +1,21 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /status-welcome-common.html/disconnect HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+EmWeb_ns:vim:4=/status.html&EmWeb_ns:vim:2.ImServices.wanlink.1:enabled=false&EmWeb_ns:vim:18=true
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /status-welcome-common.html/connect HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+EmWeb_ns:vim:4=/status.html&EmWeb_ns:vim:2.ImServices.wanlink.1:enabled=true&EmWeb_ns:vim:18=true
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

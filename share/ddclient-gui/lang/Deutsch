@@ -1,0 +1,240 @@
+# Downloaddaemon Client-wx Language file: German/Deutsch
+#
+# Note: 
+# - comment lines begin with #
+# - syntax is english->other language
+# - one entry per line
+# - duplicates or empty lines don't disturb the program
+
+#about dialog
+About...->Über...
+Project Website->Projekt Webseite
+
+#add dialog
+Add Downloads->Downloads hinzufügen
+Single Download->Einzelner Download
+Many Downloads->Mehrere Downloads
+Add many Downloads (one per Line, no Title necessary).->Mehrere Downloads hinzufügen (einen pro Zeile, kein Titel nötig).
+Separate into different Packages->in verschiedene Pakete aufteilen
+Title->Titel
+Separate URL and Title like this: http://something.aa/bb::a fancy Title->Teilen Sie URL und Titel so: http//irgendetwas.aa/bb::mein Titel
+Please connect before adding Downloads.->Bitte verbinden Sie bevor sie Downloads hinzufügen.
+No Connection to Server->Keine Verbindung zum Server
+At least one inserted URL was invalid.->Mindestens eine hinzugefügte URL war ungültig.
+Invalid URL->Ungültige URL
+Package->Paket
+Failed to create Package.->Paketerstellung fehlgeschlagen.
+fill Title from URL->Titel aus URL füllen
+
+#configure dialog
+Configure DownloadDaemon->DownloadDaemon konfigurieren
+General->Allgemein
+Password->Passwort
+Logging->Log
+
+Premium Account->Premium Konto
+General Options->Allgemeine Optionen
+Username->Nutzername
+Please connect before configurating DownloadDaemon.->Bitte verbinden Sie bevor Sie DownloadDaemon konfigurieren.
+No Connection to Downloaddaemon->Keine Verbindung
+overwrite existing Files->existierende Dateien überschreiben
+refuse existing Links->existierende Links nicht akzeptieren
+check Size and Availability on adding->Größe und Verfügbarkeit beim Hinzufügen testen
+Captcha retries->Captcha Versuche
+
+Download Time->Download Zeitraum
+Download Folder->Download Ordner
+Additional Download Options->Zusätzliche Download Optionen
+You can force DownloadDaemon to only download at specific times by entering a start and\nend time in the format hours:minutes.\nLeave these fields empty if you want to allow DownloadDaemon to download permanently.->Wenn man eine Start- und Endzeit im Format Stunden:Minuten angibt läd DownloadDaemon nur\nzu diesen Zeiten herunter.\nLassen Sie diese Felder leer, wenn DownloadDaemon immer herunterladen soll.
+Start Time->Startzeit
+End Time->Endzeit
+This option specifies where finished downloads should be saved on the server.->Diese Option spezifiziert wo Downloads auf dem Server gespeichert werden sollen.
+Here you can specify how many downloads may run at the same time and regulate the\n overall download speed.->Hier kann man festlegen wieviele Downloads gleichzeitig laufen dürfen und die gesamte \nDownload Geschwindigkeit angeben.
+Simultaneous Downloads->Gleichzeitige Downloads
+Maximal Speed in kb/s->Maximale Geschwindigkeit in kb/s
+
+Change Password->Passwort ändern
+Old Password->Altes Passwort
+New Password->Neues Passwort
+
+Logging Activity->Log Modus
+Log Procedure->Log Prozedur
+This option specifies DownloadDaemons logging activity.->Diese Option legt den Logmodus fest.
+This option specifies how logging should be done\n(Standard output, Standard erroroutput, Syslog-daemon, own file).->Diese Option legt wie das Loggen gemacht werden soll\n(Standard Ausgabe, Standard Fehlerausgabe, Syslog-daemon, eigene Datei).
+stdout - Standard output->stdout - Standard Ausgabe
+stderr - Standard error output->stderr - Standard Fehlerausgabe
+file:->Datei:
+enter path->Pfad eingeben
+Warning->Warnungen
+Severe->Fehler
+Off->Aus
+
+Policy->Methode
+Router Data->Router Daten
+enable reconnecting->Reconnects ermöglichen
+Reconnect Policy->Reconnect Methode
+Hard->Hart
+Continue->Fortführen
+Soft->Weich
+Pussy->Paranoid
+HARD cancels all downloads if a reconnect is needed\nCONTINUE only cancels downloads that can be continued after the reconnect\nSOFT will wait until all other downloads are finished\nPUSSY will only reconnect if there is no other choice \n\t(no other download can be started without a reconnect)->HART beendet alle Downloads wenn ein Reconnect nötig ist\nFORTFÜHREN beendet nur Downloads, die nach dem Reconnect fortgesetzt werden können\nWEICH wartet bis alle laufenden Downloads fertig sind\nPARANOID reconnectet nur, wenn sonst nichts mehr geht
+
+Failed to change Log Procedure.->Ändern der Log Prozedur fehlgeschlagen.
+Password Error->Passwort Fehler
+Failed to reset the Password.->Ändern des Passworts fehlgeschlagen.
+
+Proxy->Proxy
+You can provide a list of proxys to use proxy-alternation. For hosters with an IP-based\nbandwidth-limit, this can bypass such restrictions by using different proxies.\n\nOne entry per Line. User, Password and Port are optional.\nFormat: <user>:<password>@<ip-address>:<port>\nFor example: tom:mypass@123.456.7.89:5115 or tom@hello.de:1234 or hello.de->Es kann eine Proxyliste für einen Proxywechsel angegeben werden. Dies kann bei Hostern\nmit IP-basierendem Downloadlimit diese Restriktionen umgehen, indem verschiedene\nProxies benutzt werden.\n\nEin Eintrag pro Zeile. Nutzer, Passwort und Port sind optional.\nFormat: <nutzer>:<passwort>@<ip-adresse>:<port>\nZum Beispiel: tom:mypass@123.456.7.89:5115 or tom@hello.de:1234 or hello.de
+If a connection to a server fails when using a proxy, should DownloadDaemon retry with\nanother proxy?->Wenn die Verbindung zu einem Server mit einem Proxy fehlschlägt, soll Downloaddaemon\nes mit einem anderen Proxy erneut versuchen?
+retry->erneut versuchen
+
+Client->Client
+Update Interval in s->Update Intervall in s
+
+Package Extractor->Entpacker
+enable->verwende
+delete extracted Archives->entpackte Archive löschen
+Supply a list of passwords that should always be tried to extract archives. If you set a\npassword for a specific package, that password will be used. If you set no password,\nExtraction will be tried without a password and with this list.\nOne entry per Line.->Passwortliste, die immer für das Entpacken von Archiven verwendet werden soll. Wenn man\nein Passwort für ein Paket setzt, wird dieses Passwort benutzt. Wenn kein Passwort\ngesetzt ist, wird das Entpacken ohne Passwort und mit Hilfe dieser\nPasswortliste verwendet.\nEin Eintrag pro Zeile.
+
+Advanced Configuration->Fortgeschrittene Konfiguration
+Advanced\nConfiguration->Fortgeschrittene\nKonfiguration
+
+#connect dialog
+Connect to Host->Mit Host verbinden
+Please insert Host Data->Bitte Hostdaten eingeben
+Data->Daten
+Password->Passwort
+Save Data->Daten speichern
+Language->Sprache
+
+Encrypted authentication not supported by server.->Verschlüsselte Authentifikation wird vom Server nicht unterstützt.
+Do you want to try unsecure plain-text authentication?->Wollen Sie unterschlüsselte Authentifikation versuchen?
+No Encryption->Keine Verschlüsselung
+Unknown Error while Authentication.->Unbekannter Fehler während der Authentifikation
+Authentication Error->Authentifizierungsfehler
+Wrong Password, Authentication failed.->Falsches Passwort, Authentifizierung fehlgeschlagen.
+No connection established.->Keine Verbindung hergestellt.
+Connection failed (wrong IP/URL or Port).->Verbindung fehlgeschlagen (falsche IP/URL oder Port)
+Please try again.->Bitte versuchen Sie es erneut.
+Connection failed->Verbindung fehlgeschlagen
+
+#delete dialog
+Delete File->Datei löschen
+Do you want to delete the downloaded File for Download %p1?->Wollen Sie die heruntergeladene Datei für Download %p1 löschen?
+Always yes->Immer ja
+Always no->Immer nein
+
+#main dialog
+Auto Connection: No Encryption Supported->Auto Verbindung: keine Verschlüsselung
+Please reconnect.->Bitte erneut verbinden.
+No Connection to Server->Keine Verbindung zum Server
+Not connected->Nicht verbunden
+Connected to->Verbunden mit
+Selected Size->markierte Größe
+Total Speed->Geschwindigkeit
+Pending Queue Size->anstehende Downloads
+
+Connect->Verbinden
+Configure->Konfigurieren
+Activate Downloading->Downloaden aktivieren
+Deactivate Downloading->Downloaden deaktivieren
+Download->Download
+Activate Download->Download aktivieren
+Deactivate Download->Download deaktivieren
+Add Download->Download hinzufügen
+Delete Download->Download löschen
+Delete finished Downloads->fertige Downloads löschen
+Select all->Alles markieren
+Copy URL->URL kopieren
+Paste URL->URL einfügen
+Quit->Beenden
+File->Datei
+About->Über
+Help->Hilfe
+
+Connect to a DownloadDaemon Server->Mit einem DownloadDaemon Server verbinden
+Add->Hinzufügen
+Add a new Download->Neuen Download hinzufügen
+Delete->Löschen
+Delete the selected Download->Download löschen
+Delete Finished Downloads->Fertige Downloads löschen
+Delete all finished Downloads->Alle fertigen Downloads löschen
+Delete File->Datei löschen
+Activate->Aktivieren
+Activate the selected Download->Download aktivieren
+Deactivate->Deaktivieren
+Deactivate the selected Download->Download deaktivieren
+Increase Priority->Priorität erhöhen
+Increase Priority of the selected Download->Priorität erhöhen
+Decrease Priority->Priorität verringern
+Decrease Priority of the selected Download->Priorität verringern
+Move to Top->An den Anfang verschieben
+Move the selected Download to the top->Den selektierten Download an den Anfang verschieben
+Move to Bottom->Ans Ende verschieben
+Move the selected Download to the bottom->Den selektierten Downlaod ans Ende verschieben
+Configure DownloadDaemon Server->DownloadDaemon Server konfigurieren
+
+Time left->Dauer
+Download(s)->Download(s)
+
+Download running. Waiting.->Download läuft. Warten.
+Enter Captcha->Captcha eingeben
+Error->Fehler
+Retrying soon.->Versuche es bald erneut.
+Running->Läuft
+Download Inactive.->Download inaktiv.
+Download Inactive and Finished.->Download inaktiv und beendet.
+Inactive. Error->Inaktiv. Fehler
+Download Pending.->Download anstehend.
+Have to wait.->Muss warten.
+Download Finished.->Download beendet.
+Reconnecting...->Verbinde neu...
+Status not detected.->Status nicht erkannt.
+Invalid hostname->Ungültiger Hostname
+Connection lost->Verbindung unterbrochen
+File not found on server->Datei nicht gefunden
+Unable to write file->Datei konnte nicht geschrieben werden
+Plugin error->Plugin Fehler
+Download limit reached->Downloadlimit erreicht
+Connection failed->Verbindung fehlgeschlagen
+Server overloaded->Server überlastet
+Authentication failed->Authentifizierung fehlgeschlagen
+Unknown plugin error - please report->Unbekannter Pluginfehler, bitte melden
+Size->Größe
+
+Please connect before deleting Downloads.->Bitte verbinden Sie bevor Sie Downloads löschen.
+Do you really want to delete\nthe selected Download(s)?->Wollen Sie wirklich die\nmarkierten Download(s) löschen?
+Delete Downloads->Lösche Downloads
+Error occured at deleting File of Download %p1.->Beim Löschen der Datei von Download %p1 ist ein Fehler aufgetreten.
+At least one Row should be selected.->Mindestens eine Zeile sollte markiert sein.
+Error occured at deleting Download(s).->Beim Löschen von Download(s) ist ein Fehler aufgetreten.
+
+Do you really want to delete\nall finished Download(s)?->Wollen Sie wirklich alle\nfertigen Downloads löschen?
+
+Please connect before deleting Files.->Bitte verbinden Sie bevor Sie Dateien löschen.
+Do you really want to delete\nthe selected File(s)?->Wollen Sie wirklich die\nmarkierten Dateien löschen?
+Delete Files->Dateien löschen
+Error occured at deleting Files(s).->Beim Löschen von Datei(en) ist ein Fehler aufgetreten.
+
+Please connect before activating Downloads.->Bitte verbinden Sie bevor Sie Downloads aktivieren.
+Please connect before deactivating Downloads.->Bitte verbinden Sie bevor Sie Downloads deaktivieren.
+Please connect before increasing Priority.->Bitte verbinden Sie bevor Sie die Priorität erhöhen.
+Please connect before decreasing Priority.->Bitte verbinden Sie bevor Sie die Priorität erniedrigen.
+Please connect before configurating DownloadDaemon.->Bitte verbinden Sie bevor Sie DownloadDaemon konfigurieren.
+Please connect before you activate Downloading.->Bitte verbinden Sie bevor Sie das Downloaden aktivieren.
+Please connect before you deactivate Downloading.->Bitte verbinden Sie bevor Sie das Downloaden deaktivieren.
+Please connect before copying URLs.->Bitte verbinden Sie bevor Sie URLs kopieren.
+Please connect before changing Packages.->Bitte verbinden Sie bevor Sie Pakete verändern.
+Please connect before entering a Captcha.->Bitte verbinden Sie bevor Sie einen Captcha eingeben.
+Couldn't write into clipboard.->Konnte nicht in Zwischenablage schreiben.
+Clipboard Error->Zwischenablagen-Fehler
+Enter Package Password->Paket Passwort eingeben
+Please connect before changing the Download List.->Bitte verbinden Sie bevor Sie die Downloadliste verändern.
+Enter Title->Titel eingeben
+Enter Title of Package %p1->Titel für Paket %p1 eingeben
+Enter Title of Download %p1->Titel für Download %p1 eingeben
+Enter URL->URL eingeben
+Enter URL of Download %p1->URL für Download %p1 eingeben
+Running or finished Downloads can't be changed.->Laufende oder beendete Downloads können nicht verändert werden.
+Please connect before adding Containers.->Bitte verbinden Sie bevor Sie Container hinzufügen.
+Add Download Container->Download Container hinzufügen

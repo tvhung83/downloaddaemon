@@ -1,0 +1,25 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            GET /login.htm?page=login&pws=%%%pass%%% HTTP/1.1
+            Host: %%%routerip%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /page=status_main&button=pppoedisconnect&disconnect=Disconnect HTTP/1.1
+            Host: %%%routerip%%%
+            Cookie: %%%Set-Cookie%%%
+
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /page=status_main&button=pppoeconnect&connect=+Connect+ HTTP/1.1
+            Host: %%%routerip%%%
+            Cookie: %%%Set-Cookie%%%
+
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

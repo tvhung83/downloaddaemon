@@ -1,0 +1,21 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /setup.cgi HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+todo=disconnect
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /setup.cgi HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+todo=connect
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

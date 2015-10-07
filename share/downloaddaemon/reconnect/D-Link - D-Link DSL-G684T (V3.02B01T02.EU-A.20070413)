@@ -1,0 +1,21 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /cgi-bin/webcm HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+getpage=../html/status/deviceinfofile.htm&encaps0:settings/manual_conn=0&var:mycon=connection0&var:conid=encaps0&connection0:pppoe:command/stop=&encaps0:pppoa:command/stop=&var:judge=2
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /cgi-bin/webcm HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+getpage=../html/status/deviceinfofile.htm&encaps0:settings/manual_conn=1&var:mycon=connection0&var:conid=encaps0&connection0:pppoe:command/start=&encaps0:pppoa:command/start=&var:judge=1
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

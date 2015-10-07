@@ -1,0 +1,19 @@
+[[[HSRC]]]
+	[[[STEP]]]
+		[[[REQUEST]]]
+GET /setup.cgi?next_file=diag.htm&todo=cfg_init HTTP/1.1
+Host: %%%routerip%%%
+Authorization: Basic %%%basicauth%%%
+		[[[/REQUEST]]]
+	[[[/STEP]]]
+
+	[[[STEP]]]
+		[[[REQUEST]]]
+POST /setup.cgi HTTP/1.1
+Host: %%%routerip%%%
+Authorization: Basic %%%basicauth%%%
+
+todo=reboot&this_file=diag.htm&next_file=diag.htm
+		[[[/REQUEST]]]
+	[[[/STEP]]]
+[[[/HSRC]]]

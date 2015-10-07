@@ -1,0 +1,20 @@
+{err_message}
+
+<center><a href="index.php?site=config">{L_Conf_general}</a> | <a href="index.php?site=conf_reconnect">{L_Conf_reconnect}</a> | <a href="index.php?site=conf_premium">{L_Conf_premium}</a></center>
+<br />
+
+<form action="index.php?site=adv_config" method="post">
+	<table border="1" width="500">
+		<tr><td>{L_variable}</td><td>{L_value}</td></tr>
+		<?php
+		foreach($Variables as $line) {
+			echo "<tr>";
+			$varval = explode("=", $line);
+			echo "<td>" . trim($varval[0]) . "</td>";
+			echo "<td><input type=\"text\" name=\"" . trim($varval[0]) . "\" value=\"" . trim($varval[1]) . "\" style=\"width:100%\" /></td>";
+			echo "</tr>";
+		}
+		?>
+	</table><br />
+	<center><input type="submit" name="submit_adv_form" value="Apply" /></center>
+</form>

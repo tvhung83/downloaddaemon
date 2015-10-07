@@ -1,0 +1,36 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /start.login HTTP/1.1
+            Host: %%%routerip%%%
+
+P1=%%%pass%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /pppctl.cmd HTTP/1.1
+            Host: %%%routerip%%%
+            Cookie: %%%Set-Cookie%%%
+
+action=0
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /pppctl.cmd HTTP/1.1
+            Host: %%%routerip%%%
+            Cookie: %%%Set-Cookie%%%
+
+action=1
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            GET /<POST>logout.cmd?action=1 HTTP/1.1
+            Host: %%%routerip%%%
+            Cookie: %%%Set-Cookie%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

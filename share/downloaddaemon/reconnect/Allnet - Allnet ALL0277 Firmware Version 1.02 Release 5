@@ -1,0 +1,17 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            GET /apply.cgi?submit_button=Status&submit_type=Disconnect&change_action=gozila_cgi&wan_proto=pppoe HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            GET /apply.cgi?submit_button=Status&submit_type=Connect&change_action=gozila_cgi&wan_proto=pppoe HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

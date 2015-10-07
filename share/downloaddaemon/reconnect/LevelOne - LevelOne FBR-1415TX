@@ -1,0 +1,29 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /cgi-bin/logi HTTP/1.1
+            Host: %%%routerip%%%
+
+=NAME=%%%user%%%&PASSWORD=%%%pass%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /cgi-bin/dial HTTP/1.1
+            Host: %%%routerip%%%
+            Cookie: %%%Set-Cookie%%%
+
+RC=@&A=H&M=0&T=2000&rd=status
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /cgi-bin/dial HTTP/1.1
+            Host: %%%routerip%%%
+            Cookie: %%%Set-Cookie%%%
+
+RC=@&A=D&M=0&T=10000&rd=status
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

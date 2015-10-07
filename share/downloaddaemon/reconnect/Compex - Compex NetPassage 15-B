@@ -1,0 +1,18 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /act_extip HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+CONNECT=Disconnect
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            GET / HTTP/1.1
+            Host: http://www.t-online.de
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

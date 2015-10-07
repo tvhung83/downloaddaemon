@@ -1,0 +1,27 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            GET /cgi-bin/login.exe?pws=%%%pass%%% HTTP/1.1
+            Host: %%%routerip%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /cgi-bin/statusprocess.exe HTTP/1.1
+            Host: %%%routerip%%%
+            Cookie: %%%Set-Cookie%%%
+
+disconnect=true
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /cgi-bin/statusprocess.exe HTTP/1.1
+            Host: %%%routerip%%%
+            Cookie: %%%Set-Cookie%%%
+
+connect=true
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

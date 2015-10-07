@@ -1,0 +1,20 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            GET /rebootinfo.cgi HTTP/1.1
+            Host: %%%routerip%%%
+            Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5
+            Accept-Language: es-es,es;q=0.8,en-us;q=0.5,en;q=0.3
+            Accept-Encoding: gzip,deflate
+            Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+            Keep-Alive: 300
+            Connection: keep-alive
+            Referer: http://%%%routerip%%%/resetrouter.html
+            Authorization: Basic %%%basicauth%%%
+            Server: micro_httpd
+            Cache-Control: no-cache
+            Content-Type: text/html
+            Connection: close
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

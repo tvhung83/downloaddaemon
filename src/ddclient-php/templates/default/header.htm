@@ -1,0 +1,83 @@
+<!--
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; version 2 of the License.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+	<head>
+		<title>{L_DD} - {L_Site}</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="author" content="DownloadDaemon Team" />
+		<meta name="copyright" content="DownloadDaemon Team" />
+		<meta name="generator" content="DownloadDaemon" />
+		<meta name="description" content="Web Admin Tool for DownloadDaemon" />
+		<meta name="keywords" content="DownloadDaemon," />
+		<meta name="robots" content="all" />
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<meta http-equiv="language" content="{T_DEFAULT_LANG}" />
+		{T_META}
+		<base href="{T_SITE_URL}" />
+		<link rel="canonical" href="{T_SITE_URL}" />
+		<link rel="shortcut icon" href="{T_SITE_URL}templates/ddico.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="{T_SITE_URL}templates/default/css/style.css" media="screen" />
+		<script type="text/javascript">
+		/* <![CDATA[ */
+		    (function() {
+			var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+		
+			s.type = 'text/javascript';
+			s.async = true;
+			s.src = 'http://api.flattr.com/js/0.5.0/load.js?mode=auto';
+		
+			t.parentNode.insertBefore(s, t);
+		    })();
+
+		<?php if(AUTO_REFRESH && $site == "manage") echo '
+		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp=new XMLHttpRequest();
+		}
+		else {// code for IE6, IE5
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange=function() {
+			if (xmlhttp.readyState==4 && xmlhttp.status==200) {	
+				var tmpdiv = document.createElement("div");
+				tmpdiv.innerHTML = xmlhttp.responseText;
+				for (var i = 0; i < tmpdiv.childNodes.length; i++) {
+					if (tmpdiv.childNodes[i].id == "mgmt_table") {
+						document.getElementById("mgmt_table").innerHTML = tmpdiv.childNodes[i].innerHTML;
+						break;
+					}
+				}
+				// we need this shitty dummy-parameter or IE will cache ajax requests and we will not receive updates at all in IE
+				// this is also why I have to use POST instead of GET
+				xmlhttp.open("GET", "index.php?site=manage&echo=1&dummy=" + new Date().getTime(), true);
+				setTimeout("xmlhttp.send()",' . REFRESH_TIME * 1000 . ');
+				tmpdiv = null;
+				delete tmpdiv;
+			}
+		}
+		xmlhttp.open("GET","index.php?site=manage&echo=1",true);
+		setTimeout("xmlhttp.send()", ' . REFRESH_TIME * 1000 . ');
+		'; ?>
+		/* ]]> */
+		</script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="header">
+				<h1>{L_DD} {L_Manager}</h1>
+				<ul id="nav">
+					<li><a href="index.php?site=add">{L_Add}</a></li>
+					<li><a href="index.php?site=manage">{L_Manage}</a></li>
+					<li><a href="index.php?site=config">{L_Config}</a></li>
+					<li><a href="index.php?site=logout">{L_Logout}</a></li>
+				</ul>
+			</div>
+			<div id="content">

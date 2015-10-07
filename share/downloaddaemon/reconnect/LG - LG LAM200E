@@ -1,0 +1,17 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            GET /doc/ppp.htm?WINDWEB_URL=/doc/ppp.htm&New_PPP_Action=1&PPP_connection_number=1 HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            GET /doc/ppp.htm?WINDWEB_URL=/doc/ppp.htm&New_PPP_Action=0&PPP_connection_number=1 HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

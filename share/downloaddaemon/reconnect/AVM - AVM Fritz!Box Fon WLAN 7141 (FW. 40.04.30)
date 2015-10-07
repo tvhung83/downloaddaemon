@@ -1,0 +1,26 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /cgi-bin/webcm HTTP/1.1
+            Host: %%%routerip%%%
+
+getpage=..%2Fhtml%2Fde%2Fmenus%2Fmenu2.html&errorpage=..%2Fhtml%2Findex.html&var%3Alang=de&var%3Apagename=home&var%3Amenu=home&=&login%3Acommand%2Fpassword=%%%pass%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /cgi-bin/webcm HTTP/1.1
+            Host: %%%routerip%%%
+            Cookie: %%%Set-Cookie%%%
+
+getpage=../html/de/menus/menu2.html&errorpage=../html/index.html&var:lang=de&var:pagename=home&var:menu=home&=&login:command/password=%%%pass%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            GET / HTTP/1.1
+            Host: http://www.google.de
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

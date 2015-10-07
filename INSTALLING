@@ -1,0 +1,99 @@
+This guide is seperated in 5 parts:
+1: General information
+2: Things you have to do if you got this guide in a .tar.gz or .tar.bz2 source package
+3: Things you have to do if you are building from SVN
+4: Installing the ARM/armel package (a bit more complicated)
+5: Doing a user-only installation (which does not require root privileges for execution)
+
+1:	To build DownloadDaemon, you need to have libcurl (libcurl-dev) and libboost-thread (at least version 1.36.0) installed.
+	As of version 0.9, you can use DownloadDaemon without libboost-thread, if it is compiled with a recent g++ version (>= 4.4, but not on cygwin),
+	that includes c++0x threading support. the CMake configuration will automatically detect if you have std::thread and will tell
+	you if you have to install boost-thread.
+	DownloadDaemon only runs on Unix-systems (Linux tested). However, by using Cygwin, a POSIX-emulation environment for Windows,
+	you can also run DownloadDaemon under Windows. For instructions on how to do it, check out the DownloadDaemon Wiki.
+	Or just use the packages provided in the download-section on http://downloaddaemon.sourceforge.net.
+	To build ddconsole, you don't have to meet any special dependencies, except for a compiler and the c++ standard library
+	To build ddclient-gui, you only need
+	to have the Qt-development files installed.
+	You also need cmake in order to build any of the packages.
+	There are also some features that require additional programs. If you want them, you have to install that programs. If you
+	don't care about them, forget about it.
+	for all one-click-hoster plugins that require captchas (as netload.in and megaupload.com), you need to install "gocr" and "netpbm-progs".
+	then set the path to the gocr executable in your downloaddaemon.conf.
+	to use automatic package-extraction, DownloadDaemon can use the following programs:
+	"unrar" to extract rar-packages (in 0.9, rarlab's unrar should be prefered over GNU unrar. as of version 1.0, it doesn't matter).
+	"unzip" to extract zip-archives
+	"tar" to extract .tar and .tar.gz packages. If you have bzip2 installed, DD can also extract .tar.bz2.
+	Please don't forget to set the paths to all those programs in your downloaddaemon.conf file.
+
+2:	Building a package from a source package is pretty simple. Extract the archive (if you read this, this should be done by now)
+	and cd to the new folder. now simply run 
+	cmake . && make
+	sudo make install
+	for an in-source-tree build, which should be enough in most cases.
+	If you want to build in another place, simply execute cmake <path to extracted package> instead of cmake .
+	If you are installing the Daemon, you have to add a user and a group called "downloadd" to restrict permissions
+	when executing. Therefore execute these commands:
+	sudo addgroup --system downloadd
+	sudo adduser --system --ingroup downloadd --home /etc/downloaddaemon downloadd
+	sudo chown -R downloadd:downloadd /etc/downloaddaemon
+	
+	You might also want to start DownloadDaemon automatically when booting up the system. To achieve that, you have to enable
+	the init-script placed in /etc/init.d. On debian-based systems, this can be done by executing
+	sudo update-rc.d downloadd defaults
+		
+
+3:	Building one of the programs from SVN is a bit harder and depends on what you want to build.
+	First, create a directory in your svn root where you want to build:
+	mkdir build
+	cd build
+	If you want to build all programs (downloaddaemon, ddconsole, ddclient-gui), you simply run
+	cmake .. && make
+	If you only want to build a single program, you have to run cmake on their source folders, eg:
+	cmake ../src/daemon
+	or
+	cmake ../src/ddconsole
+	or
+	cmake ../src/ddclient-gui
+	
+	in any case, to install the program(s), run
+	sudo make install
+
+	To run the Daemon, you have to create a user for it. You can do that by executing this:
+	sudo addgroup --system downloadd
+	sudo adduser --system --ingroup downloadd --home /etc/downloaddaemon downloadd
+	sudo chown -R downloadd:downloadd /etc/downloaddaemon
+
+
+4:	Since there is no general way to install programs on NAS', the ARM package only contains a packed structure
+	which needs to be rebuild on the NAS filesystem. Usually the embedded Linux distribution is installed on a ROM.
+	Therefore any changes you make to it will be lost after a reboot. The only good solution I found is not copying
+	the data from the archive into the filesystem, but instead just copy it to the hard disk which was put in the NAS.
+	Then you write a small shell script that links all the files into the filesystem. This script must then be executed
+	after each reboot (If you need some help on installing the Package on your NAS, you can always contact me to get support.
+	Just go to our Forums and ask (https://sourceforge.net/projects/downloaddaemon/forums/forum/1007820).
+	Another problem is, that many NAS do not have the required libraries (libcurl, libstdc++, libboost_thread) installed.
+	To solve this problem, you can Download the downloaddaemon_arm_libs package, which includes the files. They should work for
+	most NAS', since many of them run similar glibc versions. However, it does not neccessarily have to work for all of them.
+	Be VERY!!! careful when linking the libraries into the filesystem. Only link libraries in that your NAS doesn't have by default.
+	If you overwrite existing libraries, this may cause undefined system behaviour (but in most cases can be fixed with a reboot).
+	If it doesn't work, you are probably out of luck. The only way would then be cross-compiling them yourself. good luck!
+	The shell script will basically look like this or similar:
+	#include /bin/bash
+	ln -s /mnt/<path to files>/usr/bin/* /usr/bin/*
+	ln -s /mnt/<path to files>/etc/downloaddaemon /etc/downloaddaemon
+	ln -s /mnt/<path to files>/usr/share/downloaddaemon /usr/share/downloaddaemon
+	addgroup downloadd
+	adduser -h /etc/downloaddaemon -G downloadd -S -D -s /bin/false downloadd
+	chmod -R a+rw /etc/downloaddaemon /<path to the folder where downloads should be placed>
+	chown downloadd:downloadd /etc/downloaddaemon/dlist
+	DownloadDaemon -d
+
+
+5:	Do a normal DownloadDaemon installation as described above, with the following changes:
+	When compiling, run cmake with the -DDD_CONF_DIR flag (like that: cmake . -DDDCONF_DIR="/home/.../.downloaddaemon").
+	This will install the configuration to that place and makes downloaddaemon search it there instead of /etc/downloaddaemon.
+	Also, instead of running "make install", you should run "DESTDIR=/desired/install/path make install". This will install
+	the DownloadDaemon binaries and data-files to another place. You might have to run some chown/chmods before you can run
+	DownloadDaemon. Especially the configuration folder has to be writeable for DownloadDaemon.
+	  

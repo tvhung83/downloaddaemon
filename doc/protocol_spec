@@ -1,0 +1,136 @@
+This document describes the basic protocol for communicating with DownloadDaemon, for doing things like writing clients, etc (and for myself...)
+The protocol consists of 2 layers. On the one hand, every message sent through a socket to DownloadDaemon and every message you will receive
+from DownloadDaemon, will have this structure:
+<message length>:<message>
+The message length is ONLY the length of the data that follows after the : and not the data before it and also not the : itsself.
+example:
+11:DDP DL LIST
+If you put a wrong length in the beginning, you will be disconnected and need to reconnect.
+
+For C++, this can be achieved by simply using DownloadDaemons netpptk, which will handle those things for you..
+send(std::string s) will automatically append the header to s, and recv(std::string &s) will automatically remove the header
+from the received message.
+
+Description of the DownloadDaemon protocol itsself:
+
+Every command sent to DownloadDaemon will always produce an answer.
+For most commands, this is either <answer_code> <answer_message> (e.g.: "0 SUCCESS").
+This applies to all commands that do not answer a real content, like for example a dump of the current download list, or the result of a config variable.
+These commands will return their answer, and an empty string if no answer can be found (e.g. download list empty/config variable not set).
+
+Authentication:
+	Authentication is a bit weird. As soon as you connect to DownloadDaemon, you should call a recv() to find out if you need to authenticate or not.
+	You will receive "100 SUCCESS" (see status list below) if you do not need to authenticate. If you need to authenticate, you will receive a
+	"102 AUTHENTICATION" error. As a next step, you can decide if encrypted authentication should be used, by just sending "ENCRYPT", you choose encryption (md5).
+	If you don't send that, plain-text is assumed. However, the server needs to be configured to understand your choice. again, if your choice is invalid, you will receive
+	"102 AUTHENTICATION". If plain-text is used, you just send the password over in plain text, when you receive the first "102 AUTHENTICATION". if encryption should
+	be used, you send over "ENCRYPT". The server will then answer with 128 bytes of random data. (including the header, so it's basically "128:<128 bytes>".
+	To these 128 bytes, you append your password at the end and create a MD5 hash of the whole string. Just send back this hash in order to authenticate.
+	Usually a authentication would probably look like this:
+	ask user for password -> connect -> send ENCRYPT -> if 102 received, reconnect andtry plain text, if random stuff received, continue -> append password to received data
+	-> md5 it all -> send back -> if 102 received, wrong password, ich 100 received, done
+
+Every command sent to DownloadDaemon has to start with "DDP", followed by at least one whitespace.
+Also every command can address one of three targets. these targets can be "DL", "VAR", "FILE" and "ROUTER".
+DL stands for downloads and should be used if you want to change something about a download list entry, like changing a title, adding or removing a download, etc..
+PKG stands for Package. It should be used to change the package-structure.
+VAR stands for configuration variables and can be used to configure DownloadDaemon (only the stuff in downloaddaemon.conf).
+FILE stands for doing something with a file that has been downloaded by downloaddaemon (like downloading the file to the local machine or deleting the file on the remote side)
+ROUTER stands for router hardware. DownloadDaemon supports reconnect scripts through router resetting/curl/whatever. 
+       With this target you can specify router options (username/password/ip to connect, etc) (basically: this changes routerinfo.conf)
+PREMIUM with this target you can do Premium account setup for hosters. Basically you can try to put anything in there,
+	however, it will only work if there is a plugin for the desired host and if it supports Premium account handling.
+SUBSCRIPTION as of DD 1.1, a client can subscribe to changes, so you don't have to fetch the whole list with each refresh: With this target, you can set up what you want to subscribe.
+
+After specifing the target, at least one whitespace needs to follow, so now we got someting like "DDP DL ", "DDP VAR ", ...
+
+the third parameter is a command about what to do with the target.
+Please note, that many commands which require a <id> field, can also handle comma-sperated lists of IDs
+(as <id1>, <id2>, ... <idn>)
+
+For the target DL, the following commands exist: "LIST", "ADD", "DEL", "STOP", "UP", "DOWN", "ACTIVATE", "DEACTIVATE", "SET", "GET".
+	LIST will return the current list of downloads in the following format:
+	     PACKAGE|<pkg_id>|<pkg_title>
+	     id|date added|title|url|status|downloaded bytes|file size|wait seconds|error message|download speed
+	     if a | or \ is in the title or in the URL, it will be escaped by \ (| -> \|; \ -> \\)
+	ADD <package ID> <url> <comment> will add a download. the ADD command needs to be followed by at least one whitespace, followed by the download url.
+	    if a title for the download should be set, it should be added after another whitespace. If the same link is already in the list
+	    and the config file forbids adding the same links twice, you will receive a 108 VARIABLE
+	DEL <id> will delete a download and needs to be followed by the download ID as it can be viewed from the LIST command
+	STOP <id> will stop a running download immediately and needs to be followed by the download ID
+	UP <id> will move a download one position upwards and therfore increase its priority. The command needs to be followed by a download ID
+	DOWN <id> will move a download one position downwards and therfore decrease its priority. The command needs to be followed by a download ID
+	ACTIVATE <id> will activate a deactivated download
+	DEACTIVATE <id> will deactivate an active download. Running downloads will be aborted by this command.
+	SET <id> <option>=<value> will change the property of a download. options are: DL_URL and DL_TITLE
+	GET <id> <option> returns a download-parameter. options are: DL_URL, DL_TITLE, DL_ADD_DATE
+
+For the target PKG, the following commands exist: "ADD", "DEL", "UP", "DOWN", "EXISTS", "SET", "GET", "ACTIVATE", "DEACTIVATE".
+	ADD <name> adds an empty package to the list (add downloads to it with the DL ADD command). This command returns the ID of the newly created container or -1 on error
+	DEL <id> removes a package and all the downloads inside it
+	UP <id> moves a package up
+	DOWN <id> moves a package down
+	EXISTS <id> checks if a container exists. returns "1" if it exists or "0" if it doesnt.
+	SET <id> <option>=<value> sets an option of a package. options are: PKG_NAME, PKG_PASSWORD 
+	GET <id> <option> returns a package-parameter. options are: PKG_NAME, PKG_PASSWORD
+	CONTAINER <type>:<xcontent> creates a packages and puts the contents of the container into it. currently the type can be RSDF or DLC
+	DEACTIVATE <id> deactivate all unfinished downloads in the package
+	ACTIVATE <id> activate all inactive downloads in the package
+
+For the target VAR, the following commands exist: "SET", "GET".
+	SET <var>=<value> will set a configuration variable and needs to be in the format <variable> = <value>. the variable identifier is just the same
+	    as the variable in downloaddaemon.conf that should be changed. If you want to set the mgmt_password variable, you need to 
+	    supply the old mgmt_password variable
+	    first. In this case, the structure will be SET mgmt_password = old_password ; new_password
+	GET <var> will return a configuration variable. GET needs to be followed by the variable name that should be received and will return the value.
+	    you can not receive the password with this option. If you try to, you will receive an OPTION error
+	LIST will return a list of all changeable configuration variables in the from <var> = <value> seperated by newlines	
+
+For the target FILE, the following commands exist:
+	DEL <id> will delete a downloaded file. and needs to be followed by the download ID. This can be run on any download. 
+	    If the file exists and can be deleted, this will return success. else, it will return "109 FILE"
+	GETFILE <id> will send the downloaded file directly through the management socket. This should never be used for stuff like web-interfaces,
+	        because it will break a lot.
+		This is the only command that will result in 2 answers. The first answer you will receive is either a 100 SUCCESS or a 109 FILE.
+	        The second answer will then be either an empty string, or a file's content. (This function is not yet implemented!)
+	GETPATH <id> will send the local path on the server to the file to make downloading for local interfaces possible or let 
+	        the client do some other work with it (extracting?)
+	GETSIZE <id> will return the number of bytes of the file corresponding to the download id and -1 if it fails.
+
+For the target ROUTER, the following commands exist (a few more parameters this time)
+	LIST will list all available Router-reconnect plugins, one per line in the form of vendor_model,
+	SETMODEL <vendor_model> will set the active reconnect script, returns 109 FILE if the reconnect-plugin does not exist
+	SET <var> = <value> will set a configuration variable for the currently selected router. 
+	    possible values can be found in conf/routerinfo.conf
+	GET <var> will get a configuration variable for the currently selected router. You will not be able to receive the router's
+	          password with this command for security reason.
+
+For the target PREMIUM, you can use the following commands:
+	LIST will list all hosters which offer a premium service which is supported by DownloadDaemon, seperated by \n
+	SET <host> <user>;<password> will set the premium info for host (which has to be something like "rapidshare.com", "uploaded.to" (without the quotes)
+	    The username and password need to be seperated by ';'. If the host does not need a Username, just send ";<password>".
+	    possible answers are: 100 SUCCESS, 101 PROTOCOL (if you did something wrong) and 110 PERMISSION.
+	GET <host> Will return the specified username for the desired host. You can not receive the premium password
+	    with this command for security reason.
+	    
+For the target SUBSCRIPTION, you can use the following commands:
+	LIST will list everything you have currently subscribed
+	ADD <topic> will add a subscription to the executing client. Currently you can subscribe to SUBS_DOWNLOADS and SUBS_CONFIG (which you have to give the ADD command as a parameter). For escaping of
+	            "bad" characters (| and \), see the DL LIST command.
+	DEL <topic> will remove a subscription from the executing client. Again, specify which topic's subscription you want to remove, either SUBS_DOWNLOADS or SUBS_CONFIG.
+
+All error codes may vary between 100 and 999, to make parsing simple.
+For now, this list represents all codes:
+100 SUCCESS		<-- Operation succeeded
+101 PROTOCOL		<-- If you misunderstood this protocol documentation ;)
+102 AUTHENTICATION	<-- Authentication failed (wrong password or wrong encryption)
+103 URL			<-- Invalid URL (when adding downloads)
+104 ID			<-- Entered a not-existing ID (also returned if you try to move the top-download up or the bottom download down)
+105 STOP		<-- If a download could not be stopped, because it's not running
+106 ACTIVATE		<-- If you try to activate a download that is already active
+107 DEACTIVATE		<-- If you try to deactivate a downoad that is already unactive
+108 VARIABLE		<-- If the variable you tried to set is invalid (if get fails, you just receive an empty string). also applies to other variable values (changing download url, etc)
+109 FILE		<-- If you do any file operation on a file that does not exist.
+110 PERMISSION		<-- If a file could not be written (this can also happen if you add/del a download and don't have write permissions to the list-file)
+111 VALUE		<-- If you change a config-variable to an invalid value
+112 UNSUPPORTED		<-- If a requested feature is not (yet) supported by this DownloadDaemon

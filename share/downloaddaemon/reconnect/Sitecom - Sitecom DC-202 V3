@@ -1,0 +1,21 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /st_poe.cgi HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+modem_log_st_poe=&hang_up_st_poe=Disconnect&message=
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /st_poe.cgi HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+modem_log_st_poe=&dial_st_poe=Connect&message=
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

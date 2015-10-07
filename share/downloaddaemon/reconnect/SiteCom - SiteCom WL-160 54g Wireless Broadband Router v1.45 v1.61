@@ -1,0 +1,21 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /goform/formConnect HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+internetSta=Disconnect&buttonact1=Disconnect&buttonact=Disconnect&submit-url=/status.asp&wanMode=3
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /goform/formConnect HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+internetSta=Connect&buttonact1=Connect&buttonact=Connect&submit-url=/status.asp&wanMode=3
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

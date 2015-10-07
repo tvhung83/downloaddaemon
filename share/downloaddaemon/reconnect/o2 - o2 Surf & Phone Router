@@ -1,0 +1,24 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /Forms/rpAuth_1 HTTP/1.1
+            Host: %%%routerip%%%
+
+hiddenPassword=MD5PasswordL(%%%pass%%%)&Prestige_Login=Einloggen
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            GET /Forms/DiagADSL_1?DiagResetADSL HTTP/1.1
+            Host: %%%routerip%%%
+            Cookie: %%%Set-Cookie%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            GET / HTTP/1.1
+            Host: http://www.t-online.de
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

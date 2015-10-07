@@ -1,0 +1,21 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /cgi-bin/webcm HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+nextpage=../html/st_poe.htm&var:wanType=pppoe&connection0:pppoe:command/stop="&
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /cgi-bin/webcm HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+nextpage=../html/st_poe.htm&var:wanType=pppoe&connection0:pppoe:command/start="&
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

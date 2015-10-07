@@ -1,0 +1,17 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /cgi/b/is/_pppoe_/dt/ HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            GET / HTTP/1.1
+            Host: http://www.google.de
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

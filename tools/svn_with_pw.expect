@@ -1,0 +1,10 @@
+#!/usr/bin/expect
+
+set cmd [lindex $argv 0]
+set pw [lindex $argv 1]
+
+spawn svn $cmd
+expect "Password:"
+send "$pw\r"
+
+expect eof

@@ -1,0 +1,25 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /login.cgi HTTP/1.1
+            Host: %%%routerip%%%
+
+page=login&pws=%%%pass%%%&bug=fixed
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            GET /pppoe.cgi?webpage=de%2FSetup.htm&rc_restart=6&action=Disconnect HTTP/1.1
+            Host: %%%routerip%%%
+            Cookie: %%%Set-Cookie%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            GET /pppoe.cgi?webpage=de%2FSetup.htm&rc_restart=6&action=Connect HTTP/1.1
+            Host: %%%routerip%%%
+            Cookie: %%%Set-Cookie%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

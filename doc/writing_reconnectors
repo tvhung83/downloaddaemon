@@ -1,0 +1,6 @@
+As of version 0.8, DownloadDaemon supports JDownloaders reconnect script.
+A guide on how to write one can be found here: http://jdownloader.org/knowledge/wiki/reconnect/live-header-script
+(If you have JD installed, you may also use it to record and create a new script).
+When done, send it to me ;-)
+In order to use it, put the script in /usr/[local/]share/downloaddaemon/reconnect.
+No DD-restart required.

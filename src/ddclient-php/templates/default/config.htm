@@ -1,0 +1,59 @@
+{err_message}
+
+<center><b>{L_Conf_general}</b> | <a href="index.php?site=conf_reconnect">{L_Conf_reconnect}</a> | <a href="index.php?site=conf_premium">{L_Conf_premium}</a></center>
+
+<form action="index.php?site=config" method="post">
+	<fieldset style="width: 47%; float: left;">
+		<legend>{L_Change_PWD}</legend>
+		<label for="opwd">{L_Old_PWD}</label><input type="text" name="old_pw" id="opwd" /><br />
+		<label for="npwd">{L_New_PWD}</label><input type="text" name="new_pw" id="npwd" /><br />
+		<label for="rpwd">{L_RT_PWD}</label><input type="text" name="new_pw2" id="rpwd" /><br />
+		<label for="change_pw"> </label><input type="submit" name="change_pw" value="Change Password" id="change_pw" class="submit" />
+	</fieldset>
+	<fieldset style="width: 47%; float: right;">
+		<legend>{L_en_di}</legend>
+		{T_Enable_Button}
+	</fieldset>
+	<br />
+	<fieldset>
+		<legend>{L_gen_conf}</legend>
+		{L_start_end_desc}<br />
+		<label for="start">{L_st_time}</label><input type="text" name="download_timing_start" value="{DL_Start}" id="start" /><br />
+		<label for="end">{L_end_time}</label><input type="text" name="download_timing_end" value="{DL_End}" id="end" /><br />
+
+		{L_dl_dir_desc}<br />
+		<label for="dl_folder">{L_dl_dir}</label><input type="text" size="40" name="download_folder" value="{DL_Folder}" id="dl_folder" /><br />
+
+		{L_simul_dl_desc}<br />
+		<label for="sim">{L_simul_dl}</label><input type="text" size="5" name="simultaneous_downloads" value="{DL_sim}" id="sim" /><br />
+
+		{L_log_level_desc}<br />
+		<label for="log_level">{L_log_level}</label>{Debug}<br />
+
+		{L_max_speed_desc}<br />
+		<label for="max_speed"> </label><input type="text" name="max_dl_speed" value="{Max_DL_Speed}" id="max_speed" /><br />
+
+		<br>
+		<label for="apply"> </label><input type="submit" name="apply" value="Apply" id="apply" class="submit" />
+		<label for="adv_settings"></label><input type="button" name="adv_cfg" value="{L_adv_config}" id="adv_settings" class="submit" onclick="window.location.href='index.php?site=adv_config'" /></form>
+	</fieldset>
+	<!--fieldset>
+		<legend>Reconnect Configuration</legend>
+		This option specifies DownloadDaemons reconnect activity: <br />
+		HARD cancels all downloads if a reconnect is needed<br />
+		CONTINUE only cancels downloads that can be continued after the reconnect<br />
+		SOFT will wait until all other downloads are finished<br />
+		PUSSY will only reconnect if there is no other choice (no other download can be started without a reconnect)<br />
+		<label for="r_pol">{L_Reconnect_Policy}:</label>{Reconnect_Policy}<br />
+
+		<label for="r_model">Router Model:</label>{Router_Model_List}<br />
+		<label for="r_ip">Router IP:</label><input type="text" name="router_ip" value="{Router_IP}" id="r_ip" /><br />
+		<label for="r_user">Username:</label><input type="text" name="router_username" value="{Router_User}" id="r_user" /><br />
+		<label for="r_pwd">Password:</label><input type="text" name="router_password" id="r_pwd" /><br />
+		<label for="submit"> </label><input type="submit" name="apply" value="Apply" id="submit" />
+	</fieldset>
+	<fieldset>
+		<legend>Premium Account Configuration</legend>
+
+	</fieldset-->
+</form>

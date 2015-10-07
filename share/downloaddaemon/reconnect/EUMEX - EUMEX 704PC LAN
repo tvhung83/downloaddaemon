@@ -1,0 +1,18 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /7.html HTTP/1.1
+            Host: %%%routerip%%%
+            Authorization: Basic %%%basicauth%%%
+
+DIALOUT=checked&PPPCONN=checked&CLOSEPPP=16664266
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            GET / HTTP/1.1
+            Host: http://www.t-online.de
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]

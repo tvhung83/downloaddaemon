@@ -1,0 +1,29 @@
+[[[HSRC]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /pflogin.cgi HTTP/1.1
+            Host: %%%routerip%%%
+
+username=%%%user%%%&password=%%%pass%%%
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /RunConnect.cgi HTTP/1.1
+            Host: %%%routerip%%%
+            Cookie: %%%Set-Cookie%%%
+
+submit=Trennen
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+    [[[STEP]]][[[WAIT seconds="3"/]]][[[/STEP]]]
+    [[[STEP]]]
+        [[[REQUEST]]]
+            POST /RunConnect.cgi HTTP/1.1
+            Host: %%%routerip%%%
+            Cookie: %%%Set-Cookie%%%
+
+submit=Verbinden
+        [[[/REQUEST]]]
+    [[[/STEP]]]
+[[[/HSRC]]]
