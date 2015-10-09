@@ -35,60 +35,54 @@ plugin_status plugin_exec(plugin_input &inp, plugin_output &outp) {
 		handle->setopt(CURLOPT_WRITEFUNCTION, write_data);
 		handle->setopt(CURLOPT_WRITEDATA, &result);
 		handle->setopt(CURLOPT_SSL_VERIFYPEER, 0L);
-		handle->setopt(CURLOPT_COOKIEFILE, "/tmp/cookies.txt");
+		handle->setopt(CURLOPT_COOKIEFILE, "");
 
 		int ret = handle->perform();
 		// log_string("fshare.vn: result=" + result + ", ret=" + to_string(ret), LOG_DEBUG);
 		if(ret != CURLE_OK)
 			return PLUGIN_CONNECTION_ERROR;
 		
-		handle->cleanup();
 		string csrf = search_between(result,"type=\"hidden\" value=\"","\" name=\"fs_csrf\"");
 		log_string("fshare.vn: csrf=" + csrf, LOG_DEBUG);
 
-		string data = "LoginForm%5Bemail%5D=ipop.share%40gmail.com&LoginForm%5Bpassword%5D=" + handle->escape(inp.premium_password) +
+		string data = "LoginForm%5Bemail%5D=" + handle->escape(inp.premium_user) + "&LoginForm%5Bpassword%5D=" + handle->escape(inp.premium_password) +
 				  "&fs_csrf=" + csrf + "&LoginForm%5BrememberMe%5D=1";
-		handle->setopt(CURLOPT_URL, "https://www.fshare.vn/login");
-		handle->setopt(CURLOPT_WRITEFUNCTION, write_data);
-		handle->setopt(CURLOPT_WRITEDATA, &result);
+		handle->setopt(CURLOPT_POST, 1);
 		handle->setopt(CURLOPT_COPYPOSTFIELDS, data.c_str());
-		handle->setopt(CURLOPT_SSL_VERIFYPEER, 0L);
-		handle->setopt(CURLOPT_COOKIEFILE, "/tmp/cookies.txt");
 		log_string("fshare.vn: data=" + data, LOG_DEBUG);
 
+		result.clear();
 		ret = handle->perform();
 		log_string("fshare.vn: result=" + to_string(result.find("/account/profile")), LOG_DEBUG);
 		if(ret != CURLE_OK)
 			return PLUGIN_CONNECTION_ERROR;
 		
-		if(result.find("Invalid login.") != string::npos) {
+		if(result.find("/account/profile") == string::npos) {
 			return PLUGIN_AUTH_FAIL;
 		}
-		handle->cleanup();
 
 		handle->setopt(CURLOPT_URL, url);
-		handle->setopt(CURLOPT_WRITEFUNCTION, write_data);
+		handle->setopt(CURLOPT_POST, 0);
+		handle->setopt(CURLOPT_COPYPOSTFIELDS, "");
+		handle->setopt(CURLOPT_FOLLOWLOCATION, 1);
+		handle->setopt(CURLOPT_HEADER, 1);
+		handle->setopt(CURLOPT_NOBODY, 1);
 		handle->setopt(CURLOPT_WRITEDATA, &result);
-		handle->setopt(CURLOPT_SSL_VERIFYPEER, 0L);
-		handle->setopt(CURLOPT_COOKIEFILE, "/tmp/cookies.txt");
-		static const char *headerfilename = "/tmp/header.out";
-		FILE *headerfile = fopen(headerfilename, "wb");
-		handle->setopt(CURLOPT_HEADERDATA, headerfile);
 		char *premium_url;
+		result.clear();
 		ret = handle->perform();
-		log_string("fshare.vn: ret=" + to_string(ret) + ", result=" + to_string(result.find("/account/profile")), LOG_DEBUG);
+		// log_string("fshare.vn: ret=" + to_string(ret) + ", result=" + to_string(result.find("/account/profile")), LOG_DEBUG);
 		ret = handle->getinfo(CURLINFO_EFFECTIVE_URL, &premium_url);
-		log_string("fshare.vn: ret=" + to_string(ret) + ", premium_url=" + premium_url + ", result=" + to_string(result.find("/account/profile")), LOG_DEBUG);
-		fclose(headerfile);
+		// log_string("fshare.vn: result=" + result, LOG_DEBUG);
+		log_string("fshare.vn: ret=" + to_string(ret) + ", premium_url=" + premium_url, LOG_DEBUG);
+		handle->cleanup();
 		if((CURLE_OK == ret) && premium_url) {
 			outp.download_url = premium_url;
-			handle->cleanup();
+			// set_url(premium_url);
 			return PLUGIN_SUCCESS;
 		} else {
-			handle->cleanup();
 			return PLUGIN_CONNECTION_ERROR;
 		}
-
 	}
 	return PLUGIN_CONNECTION_ERROR;
 }	

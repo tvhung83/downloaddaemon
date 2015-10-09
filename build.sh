@@ -17,3 +17,5 @@ export COMPILKIND='glibc hardfloat'
 mkdir build
 cd build
 cmake -DCMAKE_CXX_FLAGS="-g -Wall" ../src/daemon -DCMAKE_TOOLCHAIN_FILE=../ls-410d.cmake
+
+rm -rf * ../dist/* && cmake -DCMAKE_CXX_FLAGS="-g -Wall" ../src/daemon -DCMAKE_TOOLCHAIN_FILE=../ls-410d.cmake && DESTDIR=../dist make install && scp -r -P 2345 ../dist/usr root@10.0.2.2:/
