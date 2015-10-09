@@ -78,7 +78,6 @@ plugin_status plugin_exec(plugin_input &inp, plugin_output &outp) {
 		handle->cleanup();
 		if((CURLE_OK == ret) && premium_url) {
 			outp.download_url = premium_url;
-			// set_url(premium_url);
 			return PLUGIN_SUCCESS;
 		} else {
 			return PLUGIN_CONNECTION_ERROR;
