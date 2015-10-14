@@ -53,11 +53,12 @@ plugin_status plugin_exec(plugin_input &inp, plugin_output &outp) {
 
 		result.clear();
 		ret = handle->perform();
-		log_string("fshare.vn: result=" + to_string(result.find("/account/profile")), LOG_DEBUG);
 		if(ret != CURLE_OK)
 			return PLUGIN_CONNECTION_ERROR;
 		
-		if(result.find("/account/profile") == string::npos) {
+		ret = result.find("/account/profile");
+		log_string("fshare.vn: result=" + to_string(ret), LOG_DEBUG);
+		if(ret == string::npos) {
 			return PLUGIN_AUTH_FAIL;
 		}
 
