@@ -1562,7 +1562,7 @@ void ddclient_gui::on_load_container(){
 	f.open(fn.c_str(), fstream::in);
 	string content;
 
-	for(std::string tmp; getline(f, tmp); content += tmp); // read data into string
+    for(std::string tmp; getline(f, tmp); content += tmp); // read data into string
 		try{
 			if (fn.rfind("rsdf") == fn.size() - 4 || fn.rfind("RSDF") == fn.size() - 4)
 				dclient->pkg_container("RSDF", content);

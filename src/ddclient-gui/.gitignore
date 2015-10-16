@@ -1,0 +1,5 @@
+moc_*
+CMakeFiles
+CMakeLists.txt.user
+ddclient-gui.cbp
+ddclient-gui

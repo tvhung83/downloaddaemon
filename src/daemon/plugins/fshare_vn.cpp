@@ -22,15 +22,15 @@ size_t write_data(void *buffer, size_t size, size_t nmemb, void *userp) {
 }
 
 plugin_status plugin_exec(plugin_input &inp, plugin_output &outp) {
+	ddcurl* handle = get_handle();
 	string url = get_url();
+	string result;
 	log_string("fshare.vn: START [" + url + "]", LOG_DEBUG);
 	if(url.find("/folder/")==string::npos)
 	{
 		if(inp.premium_user.empty() || inp.premium_password.empty()) {
 			return PLUGIN_AUTH_FAIL; // free download not supported yet
 		}
-		string result;
-		ddcurl* handle = get_handle();
 		handle->setopt(CURLOPT_URL, "https://www.fshare.vn/login");
 		handle->setopt(CURLOPT_WRITEFUNCTION, write_data);
 		handle->setopt(CURLOPT_WRITEDATA, &result);
@@ -55,7 +55,7 @@ plugin_status plugin_exec(plugin_input &inp, plugin_output &outp) {
 		ret = handle->perform();
 		if(ret != CURLE_OK)
 			return PLUGIN_CONNECTION_ERROR;
-		
+
 		ret = result.find("/account/profile");
 		log_string("fshare.vn: result=" + to_string(ret), LOG_DEBUG);
 		if(ret == string::npos) {
@@ -73,16 +73,50 @@ plugin_status plugin_exec(plugin_input &inp, plugin_output &outp) {
 		result.clear();
 		ret = handle->perform();
 		// log_string("fshare.vn: ret=" + to_string(ret) + ", result=" + to_string(result.find("/account/profile")), LOG_DEBUG);
-		ret = handle->getinfo(CURLINFO_EFFECTIVE_URL, &premium_url);
-		// log_string("fshare.vn: result=" + result, LOG_DEBUG);
+		handle->getinfo(CURLINFO_EFFECTIVE_URL, &premium_url);
 		log_string("fshare.vn: ret=" + to_string(ret) + ", premium_url=" + premium_url, LOG_DEBUG);
 		handle->cleanup();
-		if((CURLE_OK == ret) && premium_url) {
+		if((CURLE_OK == ret) && url.compare(premium_url) != 0) {
 			outp.download_url = premium_url;
 			return PLUGIN_SUCCESS;
 		} else {
 			return PLUGIN_CONNECTION_ERROR;
 		}
+	}
+	else
+	{
+		download_container urls;
+		try
+		{
+			log_string("url=" + url,LOG_DEBUG);
+			handle->setopt(CURLOPT_URL, url);
+			handle->setopt(CURLOPT_POST, 0);
+			handle->setopt(CURLOPT_SSL_VERIFYPEER, 0L);
+			handle->setopt(CURLOPT_WRITEFUNCTION, write_data);
+			handle->setopt(CURLOPT_WRITEDATA, &result);
+			handle->setopt(CURLOPT_COOKIEFILE, "");
+			int ret = handle->perform();
+			if(ret != CURLE_OK) {
+				log_string("ret=" + to_string(ret) + ", result=" + result,LOG_DEBUG);
+				return PLUGIN_CONNECTION_ERROR;
+			}
+			// if(result.find(">No links to show<")!=string::npos || result.find("Folder do not exist<") !=string::npos 
+			// || result.find(">The requested folder do not exist or was deleted by the owner") != string::npos
+			// || result.find(">If you want, you can contact the owner of the referring site to tell him about this mistake") != string::npos) 
+			// 	return PLUGIN_FILE_NOT_FOUND;
+			result = search_between(result,"<ul class=\"filelist table table-striped\" id=\"filelist\">","</ul>");
+			vector<string> alink = search_all_between(result,"<a class=\"filename\"","</a>",0,false);
+			if(alink.empty())
+			{
+				return PLUGIN_FILE_NOT_FOUND;
+			}
+			for(size_t i = 0; i < alink.size(); i++)
+			{
+				urls.add_download(search_between(alink[i], "href=\"", "\""), search_between(alink[i], "title=\"", "\""));
+			}
+		}catch(...) {return PLUGIN_ERROR;}
+		replace_this_download(urls);
+		return PLUGIN_SUCCESS;
 	}
 	return PLUGIN_CONNECTION_ERROR;
 }	

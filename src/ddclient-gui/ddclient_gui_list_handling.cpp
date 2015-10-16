@@ -450,7 +450,7 @@ bool list_handling::check_full_list_update_required(){
 	for(; up_it != new_updates.end(); ++up_it){
 		if(up_it->reason == R_MOVEUP)
 			return true;
-		else if((up_it->reason == R_MOVEDOWN))
+        else if(up_it->reason == R_MOVEDOWN)
 			return true;
 		else if(up_it->reason == R_MOVETOP)
 			return true;

@@ -12,7 +12,7 @@
 #ifndef DDCLIENT_GUI_MAIN_WINDOW_H
 #define DDCLIENT_GUI_MAIN_WINDOW_H
 
-#include <Qt/qstring.h>
+#include <QString>
 #include <string>
 #include <language/language.h>
 
