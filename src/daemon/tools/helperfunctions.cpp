@@ -259,11 +259,12 @@ void correct_path(std::string &path) {
 		path.insert(0, program_root);
 	}
 
+	/*
 	int path_max;
 	#ifdef PATH_MAX
-  	path_max = PATH_MAX;
+	path_max = PATH_MAX;
 	#else
-  	path_max = pathconf (path, _PC_PATH_MAX);
+	path_max = pathconf (path, _PC_PATH_MAX);
 	if(path_max <= 0)
 		path_max = 4096;
 	#endif
@@ -272,6 +273,13 @@ void correct_path(std::string &path) {
 	if(real_path[0] != '\0')
 		path = real_path;
 	delete [] real_path;
+	*/
+
+	char* real_path = realpath(path.c_str(), NULL);
+	if (real_path != NULL) {
+		path = real_path;
+		free(real_path);
+	}
 
 	// remove slashes at the end
 	while(*(path.end() - 1) == '/' || *(path.end() - 1) == '\\') {
