@@ -2,7 +2,7 @@
 /*
  Sets the default host that will be seen on the login page
 */
-define('DEFAULT_HOST', '127.0.0.1');
+define('DEFAULT_HOST', '192.168.1.2');
 
 /*
  Sets the default port that will be seen on the login page
@@ -51,7 +51,7 @@ define('SKIP_LOGIN_PAGE', false);
 /*
  the default password to use for logging in the SKIP_LOGIN_PAGE is set to true
 */
-define('SKIP_LOGIN_PASSWORD', '');
+define('SKIP_LOGIN_PASSWORD', 'vsconan');
 
 
 ?>
